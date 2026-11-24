@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bien Elegido</title>
+<meta name="description" content="Productos que vale la pena comprar en Amazon, por categoría: para quién es cada uno, lo bueno y lo que conviene saber antes de comprar.">
+<meta property="og:title" content="Bien Elegido">
+<meta property="og:description" content="Una lista corta de productos recomendados en Amazon, por categoría.">
+<meta name="theme-color" content="#2238d8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
+<script>
+/* =====================================================================
+   EDITA AQUÍ: configuración, categorías y productos
+   ===================================================================== */
+window.CONFIG = {
+  nombreSitio: "Bien Elegido",
+  // Tu ID de seguimiento de Amazon Afiliados, p. ej. "minombre-20".
+  // Vacío = modo de ejemplo: los botones abren Amazon sin tu ID.
+  tagAfiliado: "",
+  // Tienda de tu cuenta de afiliado: "www.amazon.com", "www.amazon.com.mx", "www.amazon.es"...
+  tiendaAmazon: "www.amazon.com",
+  ultimaRevision: "noviembre de 2026",
+  correo: "camilocmontoya@gmail.com",
+  asuntoCorreo: "Cotización impresión 3D",
+  // En tu propio sitio, los enlaces de compra se abren en una pestaña nueva.
+  abrirEnNuevaPestana: true
+};
+
+// Categorías del estante. "dibujo" puede ser cualquiera de la lista DIBUJOS (audifonos, mouse, control, celular, impresora, multimetro, tetera, planta, lampara, maleta, pesa, plato, caja…).
+window.CATEGORIAS = [
+  { id: "tecnologia",   nombre: "Tecnología",   dibujo: "audifonos" },
+  { id: "perifericos",  nombre: "Periféricos",  dibujo: "mouse" },
+  { id: "gaming",       nombre: "Gaming",       dibujo: "control" },
+  { id: "celular",      nombre: "Celular",      dibujo: "celular" },
+  { id: "impresion3d",  nombre: "Impresión 3D", dibujo: "impresora" },
+  { id: "herramientas", nombre: "Herramientas", dibujo: "multimetro" },
+  { id: "cocina",       nombre: "Cocina",       dibujo: "tetera" },
+  { id: "hogar",        nombre: "Hogar",        dibujo: "planta" },
+  { id: "escritorio",   nombre: "Escritorio",   dibujo: "lampara" },
+  { id: "viajes",       nombre: "Viajes",       dibujo: "maleta" },
+  { id: "bienestar",    nombre: "Bienestar",    dibujo: "pesa" },
+  { id: "mascotas",     nombre: "Mascotas",     dibujo: "plato" }
+];
+
+/* Productos. Para el botón de compra usa UNA de estas opciones:
+   enlace   → tu enlace de afiliado completo (SiteStripe o amzn.to). Tiene prioridad.
+   asin     → el código del producto, p. ej. "B0XXXXXXXX". El enlace se arma con tu ID.
+   busqueda → si no hay enlace ni asin, el botón abre esta búsqueda en Amazon con tu ID.
+   dibujo   → la ilustración de la tarjeta (nombres en la lista DIBUJOS, más abajo).
+   imagen   → URL de una foto que tengas permiso de usar: tuya o traída con la API de Amazon.
+              No copies fotos de la página de Amazon: sus reglas lo prohíben.
+   miOpinion y nota → TU reseña y tu nota de 1 a 10, si probaste el producto. Solo se muestran si las llenas.
+              No copies reseñas de Amazon ni inventes calificaciones.
+   destacado: true → aparece primero. etiqueta → el sello de la tarjeta (opcional).
+   No escribas precios ni estrellas de Amazon: solo se permiten si vienen de su API. */
+window.PRODUCTOS = [
+  {
+    nombre: "Audífonos inalámbricos con cancelación de ruido",
+    categoria: "tecnologia", dibujo: "audifonos", etiqueta: "Nuestra elección", destacado: true,
+    idealPara: "viajar, estudiar o trabajar en lugares ruidosos",
+    porQue: "La cancelación activa de ruido apaga el zumbido de buses, aviones y oficinas abiertas, así que escuchas a menor volumen. Busca 30 horas o más de batería y carga rápida.",
+    pros: ["Silencio real en el transporte y la oficina", "Batería para varios días de uso", "Sirven para llamadas y clases en línea"],
+    contras: ["Los modelos buenos no son baratos", "Dan calor en climas cálidos"],
+    asin: "", enlace: "", busqueda: "audifonos inalambricos cancelacion de ruido", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Batería externa de 20.000 mAh con USB-C",
+    categoria: "tecnologia", dibujo: "bateria", etiqueta: "Mejor calidad-precio",
+    idealPara: "quien usa el celular todo el día fuera de casa",
+    porQue: "Alcanza para dos a cuatro cargas completas, según el celular. Con un puerto USB-C de 20 W o más recargas rápido el teléfono y la propia batería.",
+    pros: ["Cabe en cualquier bolso o mochila", "Carga celular, audífonos, reloj y tableta", "Te salva en viajes largos y apagones"],
+    contras: ["Pesa más que una de 10.000 mAh", "En avión va en el equipaje de mano, nunca en la maleta facturada"],
+    asin: "", enlace: "", busqueda: "bateria externa 20000 mah usb c carga rapida", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Cargador USB-C GaN de 65 W",
+    categoria: "tecnologia", dibujo: "cargador",
+    idealPara: "cargar portátil, celular y tableta con un solo cargador",
+    porQue: "La tecnología GaN permite cargadores mucho más pequeños. Con 65 W y dos o tres puertos cargas muchos portátiles USB-C y el celular a la vez.",
+    pros: ["Reemplaza varios cargadores", "Cabe en un bolsillo", "Carga rápida para celulares compatibles"],
+    contras: ["Al usar varios puertos, la potencia se reparte", "Los portátiles muy potentes piden más de 65 W"],
+    asin: "", enlace: "", busqueda: "cargador usb c gan 65w", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Disco SSD externo de 1 TB",
+    categoria: "tecnologia", dibujo: "bateria",
+    idealPara: "copias de seguridad, fotos y proyectos pesados",
+    porQue: "Es varias veces más rápido que un disco duro externo y, al no tener piezas móviles, aguanta mejor golpes y viajes. Busca conexión USB-C de 10 Gbps o más.",
+    pros: ["Copia archivos grandes en segundos", "Pequeño y resistente", "Compatible con PC, Mac y muchos otros equipos"],
+    contras: ["Cuesta más por gigabyte que un disco duro", "Para aprovechar la velocidad necesitas un puerto rápido"],
+    asin: "", enlace: "", busqueda: "ssd externo 1tb usb c", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Router Wi-Fi 6",
+    categoria: "tecnologia", dibujo: "router",
+    idealPara: "casas con muchos equipos conectados",
+    porQue: "El router que entrega el operador suele quedarse corto. Uno Wi-Fi 6 maneja mejor muchos celulares y computadores a la vez; si la casa es grande o de varios pisos, un sistema mesh lleva la señal a todos los cuartos.",
+    pros: ["Más estable con muchos equipos", "Mejor cobertura", "Red de invitados y control parental"],
+    contras: ["No sube la velocidad por encima del plan que pagas", "Puede que tengas que poner el módem del operador en modo puente"],
+    asin: "", enlace: "", busqueda: "router wifi 6", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Mouse inalámbrico ergonómico",
+    categoria: "perifericos", dibujo: "mouse", etiqueta: "Nuestra elección", destacado: true,
+    idealPara: "jornadas largas en el computador",
+    porQue: "Una forma que apoya bien la mano hace más cómodas las jornadas largas. Busca botones laterales y conexión por receptor USB y Bluetooth para usarlo con varios equipos.",
+    pros: ["Más cómodo en jornadas largas", "Botones laterales para atrás y adelante", "Se conecta a dos o tres equipos"],
+    contras: ["Los verticales piden unos días de adaptación", "Revisa si hay versión para zurdos si la necesitas"],
+    asin: "", enlace: "", busqueda: "mouse inalambrico ergonomico", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Teclado mecánico compacto 75 %",
+    categoria: "perifericos", dibujo: "teclado",
+    idealPara: "escribir o programar muchas horas",
+    porQue: "El formato 75 % conserva las flechas y las teclas de función, pero deja más espacio para el mouse. Si los switches son intercambiables, cambias la sensación al escribir sin soldar.",
+    pros: ["Escritura precisa y cómoda", "Ocupa menos espacio en el escritorio", "Muchos funcionan por cable y Bluetooth"],
+    contras: ["Suena más que un teclado de membrana", "Revisa la distribución: español con ñ o inglés"],
+    asin: "", enlace: "", busqueda: "teclado mecanico 75 hot swap", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Monitor de 27 pulgadas QHD (2560 × 1440)",
+    categoria: "perifericos", dibujo: "monitor", etiqueta: "Mejor calidad-precio",
+    idealPara: "trabajar con varias ventanas, estudiar o jugar",
+    porQue: "A 27 pulgadas, la resolución QHD da texto nítido y mucho más espacio que un monitor Full HD. Un panel IPS tiene mejores colores; si juegas, busca 144 Hz o más.",
+    pros: ["Mucho más espacio de trabajo", "Texto nítido a esta distancia", "Muchos admiten brazo o soporte VESA"],
+    contras: ["Revisa que tu equipo tenga la salida de video adecuada", "Ocupa bastante fondo de escritorio"],
+    asin: "", enlace: "", busqueda: "monitor 27 pulgadas qhd ips", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Cámara web 1080p con micrófono",
+    categoria: "perifericos", dibujo: "camara",
+    idealPara: "clases y reuniones en línea",
+    porQue: "La cámara integrada de muchos portátiles se ve borrosa con poca luz. Una externa de 1080p con enfoque automático mejora mucho la imagen y se monta encima del monitor.",
+    pros: ["Imagen más nítida que la de muchos portátiles", "Se conecta por USB y funciona sin instalar programas", "Pinza para monitor o rosca para trípode"],
+    contras: ["Con poca luz también pierde calidad", "El micrófono integrado es básico"],
+    asin: "", enlace: "", busqueda: "camara web 1080p", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Hub USB-C multipuerto con HDMI",
+    categoria: "perifericos", dibujo: "regleta", etiqueta: "Opción económica",
+    idealPara: "portátiles con pocos puertos",
+    porQue: "Con un solo cable USB-C sumas HDMI, puertos USB-A y lector de tarjetas. Revisa que el USB-C de tu portátil tenga salida de video.",
+    pros: ["Conecta monitor, teclado y memorias a la vez", "Pequeño y fácil de llevar", "Con Power Delivery cargas el portátil por el mismo cable"],
+    contras: ["Muchos baratos solo dan 30 Hz en 4K", "Se calienta con uso intenso"],
+    asin: "", enlace: "", busqueda: "hub usb c hdmi", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Control inalámbrico para PC y celular",
+    categoria: "gaming", dibujo: "control", etiqueta: "Nuestra elección",
+    idealPara: "jugar en PC, celular o en la nube sin cables",
+    porQue: "Un control con conexión Bluetooth y por cable funciona en PC, celulares y tabletas. Busca gatillos analógicos, batería recargable y un soporte para montar el celular si vas a jugar en él.",
+    pros: ["Funciona en varios equipos", "Batería recargable por USB-C", "Más cómodo que jugar en la pantalla táctil"],
+    contras: ["No todos los juegos del celular admiten control", "Revisa la compatibilidad con tu sistema antes de comprar"],
+    asin: "", enlace: "", busqueda: "control inalambrico pc android bluetooth", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Audífonos gamer con micrófono",
+    categoria: "gaming", dibujo: "audifonos",
+    idealPara: "jugar en línea y hablar con tu equipo",
+    porQue: "El micrófono de brazo capta tu voz mucho mejor que el de unos audífonos comunes, y el sonido envolvente ayuda a ubicar pasos y disparos. Las almohadillas de tela dan menos calor en sesiones largas.",
+    pros: ["Micrófono claro y abatible", "Sonido envolvente para ubicar ruidos", "Control de volumen a la mano"],
+    contras: ["Los inalámbricos cuestan bastante más", "El sonido envolvente virtual no rinde igual en todos los juegos"],
+    asin: "", enlace: "", busqueda: "audifonos gamer microfono", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Mouse gamer liviano",
+    categoria: "gaming", dibujo: "mouse", etiqueta: "Mejor calidad-precio",
+    idealPara: "juegos de disparos y de reflejos",
+    porQue: "Menos peso permite movimientos más rápidos y precisos, con menos cansancio. Busca un buen sensor óptico y un cable flexible o conexión inalámbrica de baja latencia.",
+    pros: ["Movimientos rápidos y precisos", "Botones programables", "Se cansa menos la mano"],
+    contras: ["Las formas muy pequeñas no le sirven a manos grandes", "Los inalámbricos de baja latencia son más caros"],
+    asin: "", enlace: "", busqueda: "mouse gamer liviano", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Base refrigerante para portátil",
+    categoria: "gaming", dibujo: "portatil", etiqueta: "Opción económica",
+    idealPara: "portátiles que se calientan al jugar o renderizar",
+    porQue: "Levanta el portátil y le sopla aire por debajo, lo que ayuda a bajar la temperatura en sesiones largas. De paso, deja la pantalla a una altura más cómoda.",
+    pros: ["Ayuda a bajar la temperatura", "Varias alturas de inclinación", "Se alimenta por USB"],
+    contras: ["Los ventiladores hacen algo de ruido", "No reemplaza una limpieza interna del portátil"],
+    asin: "", enlace: "", busqueda: "base refrigerante portatil", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Cargador inalámbrico de pie (Qi)",
+    categoria: "celular", dibujo: "celular",
+    idealPara: "dejar el celular cargando en el escritorio o la mesa de noche",
+    porQue: "Pones el celular y carga sin conectar cables, y de pie sigues viendo las notificaciones. Revisa que tu celular tenga carga inalámbrica Qi y busca 15 W si es compatible.",
+    pros: ["Sin conectar y desconectar cables", "Ves la pantalla mientras carga", "Funciona con muchos estuches delgados"],
+    contras: ["Carga más lento que por cable", "No funciona con estuches gruesos o con partes metálicas"],
+    asin: "", enlace: "", busqueda: "cargador inalambrico de pie qi 15w", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Soporte de celular para carro",
+    categoria: "celular", dibujo: "celular", etiqueta: "Opción económica",
+    idealPara: "usar el GPS mientras manejas",
+    porQue: "Deja el celular a la vista para seguir la ruta sin tenerlo en la mano. Los de rejilla de ventilación se instalan fácil; los de tablero con ventosa sirven si tu carro no tiene rejillas firmes.",
+    pros: ["El GPS siempre a la vista", "Se instala en segundos", "Se ajusta a varios tamaños de celular"],
+    contras: ["Los de ventosa pueden despegarse con el calor", "Revisa que no tape rejillas ni indicadores del tablero"],
+    asin: "", enlace: "", busqueda: "soporte celular carro", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Trípode para celular con control Bluetooth",
+    categoria: "celular", dibujo: "tripode",
+    idealPara: "fotos de grupo, videos y clases grabadas",
+    porQue: "Sostiene el celular firme y el control remoto te deja tomar la foto desde lejos. Busca uno con patas extensibles y cabeza que gire para grabar en vertical.",
+    pros: ["Fotos sin pedirle el favor a nadie", "Patas extensibles", "Graba en vertical u horizontal"],
+    contras: ["Los muy livianos se mueven con el viento", "El control funciona con una pila pequeña"],
+    asin: "", enlace: "", busqueda: "tripode celular control bluetooth", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Aro de luz LED con soporte",
+    categoria: "celular", dibujo: "tripode",
+    idealPara: "videollamadas, videos y fotos de productos",
+    porQue: "Da una luz pareja de frente que quita las sombras de la cara o de lo que fotografías. Los de 25 cm o más, con brillo y tono ajustables, rinden para casi todo.",
+    pros: ["Luz pareja y sin sombras", "Brillo y tono ajustables", "Sostiene el celular en el centro"],
+    contras: ["Se refleja en los lentes de las gafas", "Los pequeños iluminan poco a distancia"],
+    asin: "", enlace: "", busqueda: "aro de luz led con tripode", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Impresora 3D de escritorio con nivelación automática",
+    categoria: "impresion3d", dibujo: "impresora", etiqueta: "Nuestra elección", destacado: true,
+    idealPara: "empezar a imprimir piezas, repuestos y litofanías en casa",
+    porQue: "La nivelación automática de la cama te ahorra la parte más frustrante de empezar. Un área de impresión de unos 220 × 220 mm alcanza para la mayoría de piezas y litofanías.",
+    pros: ["Nivelación automática", "Cama suficiente para casi todo", "Mucha comunidad y repuestos"],
+    contras: ["Hay que aprender a usar un programa de laminado", "Hace ruido y debe estar en un lugar ventilado"],
+    asin: "", enlace: "", busqueda: "impresora 3d nivelacion automatica", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Filamento PLA blanco de 1 kg",
+    categoria: "impresion3d", dibujo: "carrete", etiqueta: "Mejor calidad-precio",
+    idealPara: "litofanías y piezas de uso general",
+    porQue: "El PLA es el material más fácil de imprimir, y en blanco deja pasar la luz de forma pareja en las litofanías. El de 1,75 mm de diámetro sirve en la mayoría de impresoras.",
+    pros: ["Fácil de imprimir", "Ideal para litofanías", "Rinde para muchas piezas"],
+    contras: ["Se ablanda con el calor: no lo dejes en un carro al sol", "Absorbe humedad, guárdalo bien cerrado"],
+    asin: "", enlace: "", busqueda: "filamento pla blanco 1.75 1kg", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Lámina PEI magnética para la cama",
+    categoria: "impresion3d", dibujo: "lamina",
+    idealPara: "despegar las piezas sin espátula ni pegamento",
+    porQue: "Las piezas se pegan bien mientras imprimes y se sueltan al doblar la lámina cuando se enfría. Revisa que la medida coincida con la cama de tu impresora.",
+    pros: ["Las piezas salen doblando la lámina", "Buena adherencia sin pegamento", "Dura mucho si la cuidas"],
+    contras: ["Debe ser de la medida exacta de tu cama", "La grasa de los dedos le quita adherencia"],
+    asin: "", enlace: "", busqueda: "lamina pei magnetica 220x220", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Kit de herramientas para impresión 3D",
+    categoria: "impresion3d", dibujo: "kit", etiqueta: "Opción económica",
+    idealPara: "quitar soportes y dejar las piezas bien terminadas",
+    porQue: "Trae espátula, pinzas, limas, bisturí y agujas para destapar la boquilla: lo que se usa casi a diario al imprimir. Sale más barato que comprar cada cosa por separado.",
+    pros: ["Todo lo básico en un estuche", "Agujas para destapar la boquilla", "Limas para el acabado"],
+    contras: ["Las herramientas de los kits baratos se desgastan pronto", "Cuidado con el bisturí"],
+    asin: "", enlace: "", busqueda: "kit herramientas impresion 3d", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Velas LED cálidas para litofanías",
+    categoria: "impresion3d", dibujo: "vela",
+    idealPara: "iluminar litofanías y lámparas sin calentar el plástico",
+    porQue: "Una luz LED cálida dentro o detrás de la litofanía hace aparecer la imagen sin riesgo de deformar el PLA. Las de control remoto o temporizador se apagan solas.",
+    pros: ["No calientan el plástico", "Luz cálida y pareja", "Muchas traen temporizador"],
+    contras: ["Revisa que quepan en tu lámpara", "Mira qué pilas usan antes de comprar"],
+    asin: "", enlace: "", busqueda: "velas led calidas con temporizador", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Multímetro digital con rango automático",
+    categoria: "herramientas", dibujo: "multimetro", etiqueta: "Nuestra elección", destacado: true,
+    idealPara: "electrónica, revisar baterías y arreglos de la casa",
+    porQue: "Mide voltaje, corriente, resistencia y continuidad, y con rango automático no tienes que adivinar la escala. Busca categoría de seguridad CAT III si lo vas a usar en tomacorrientes.",
+    pros: ["Rango automático", "Pitido de continuidad para revisar cables", "Sirve para la universidad y la casa"],
+    contras: ["Los muy baratos traen puntas frágiles", "Para corrientes altas necesitas una pinza amperimétrica"],
+    asin: "", enlace: "", busqueda: "multimetro digital rango automatico", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Estación de soldadura con temperatura regulable",
+    categoria: "herramientas", dibujo: "cautin",
+    idealPara: "soldar componentes y reparar circuitos",
+    porQue: "Controlar la temperatura evita dañar componentes y pistas, y calienta mucho más rápido que un cautín de lápiz sencillo. Busca puntas intercambiables y un soporte estable.",
+    pros: ["Temperatura estable y ajustable", "Calienta en pocos segundos", "Puntas intercambiables"],
+    contras: ["Necesitas ventilación por el humo de la soldadura", "Las puntas se gastan: compra repuestos"],
+    asin: "", enlace: "", busqueda: "estacion de soldadura temperatura regulable", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Juego de destornilladores de precisión",
+    categoria: "herramientas", dibujo: "destornillador", etiqueta: "Mejor calidad-precio",
+    idealPara: "abrir celulares, portátiles, controles y consolas",
+    porQue: "Trae decenas de puntas pequeñas (estrella, pala, torx, pentalobe) que no vienen en los juegos normales. Las puntas magnéticas evitan perder los tornillos diminutos.",
+    pros: ["Puntas para casi cualquier aparato", "Mango cómodo y puntas magnéticas", "Estuche para no perder nada"],
+    contras: ["Las puntas baratas se barren con tornillos duros", "No sirve para tornillos grandes"],
+    asin: "", enlace: "", busqueda: "juego destornilladores precision", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Taladro atornillador inalámbrico",
+    categoria: "herramientas", dibujo: "taladro",
+    idealPara: "colgar repisas, armar muebles y arreglos de la casa",
+    porQue: "Sin cable lo llevas a cualquier parte, y el embrague ajustable evita pasar los tornillos. Con dos baterías no te quedas a mitad de trabajo.",
+    pros: ["Taladra y atornilla", "Sin cables", "Embrague ajustable"],
+    contras: ["Para concreto duro necesitas uno con percusión", "Revisa si incluye batería y cargador"],
+    asin: "", enlace: "", busqueda: "taladro atornillador inalambrico", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Kit de electrónica compatible con Arduino",
+    categoria: "herramientas", dibujo: "placa", etiqueta: "Opción económica",
+    idealPara: "aprender electrónica y programación con proyectos",
+    porQue: "Trae una placa programable, protoboard, sensores, LEDs, motores y cables para armar decenas de proyectos. Es la forma más práctica de pasar de la teoría a algo que funciona.",
+    pros: ["Muchos componentes en una caja", "Ideal para proyectos de la universidad", "Mucha documentación en internet"],
+    contras: ["Los manuales suelen venir en inglés", "Algunos componentes del kit son de calidad básica"],
+    asin: "", enlace: "", busqueda: "kit arduino uno starter", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Freidora de aire de 5 litros",
+    categoria: "cocina", dibujo: "freidora", etiqueta: "Nuestra elección", destacado: true,
+    idealPara: "hogares de dos a cuatro personas que cocinan a diario",
+    porQue: "Dora papas, pollo y verduras con muy poco aceite y se calienta en pocos minutos. Con 5 litros cocinas para tres o cuatro personas sin hacer tandas.",
+    pros: ["Más rápida que el horno para porciones pequeñas", "Canasta antiadherente fácil de lavar", "Usa mucho menos aceite que la sartén"],
+    contras: ["Ocupa espacio en el mesón", "Para familias grandes conviene una de doble canasta"],
+    asin: "", enlace: "", busqueda: "freidora de aire 5 litros", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Olla de presión eléctrica multifunción de 6 litros",
+    categoria: "cocina", dibujo: "olla",
+    idealPara: "cocinar frijoles, carnes y arroz sin vigilar la estufa",
+    porQue: "Cocina a presión en mucho menos tiempo que una olla normal y se apaga sola. También hace arroz, guisos y cocción lenta, así que reemplaza varios aparatos.",
+    pros: ["Frijoles y carnes en una fracción del tiempo", "No hay que vigilarla", "Mantiene la comida caliente"],
+    contras: ["Tarda en tomar y soltar presión", "Ocupa espacio en el mesón"],
+    asin: "", enlace: "", busqueda: "olla de presion electrica 6 litros multifuncion", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Licuadora de alta potencia",
+    categoria: "cocina", dibujo: "licuadora",
+    idealPara: "batidos, salsas y jugos todos los días",
+    porQue: "Con 1.200 W o más tritura hielo, frutas congeladas y semillas sin dejar grumos. Un vaso de 1,5 litros o más alcanza para toda la familia.",
+    pros: ["Tritura hielo y fruta congelada", "Batidos sin grumos", "Muchas traen programas automáticos"],
+    contras: ["Es ruidosa", "Las cuchillas fijas cuestan más de lavar"],
+    asin: "", enlace: "", busqueda: "licuadora alta potencia", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Cafetera de prensa francesa de 1 litro",
+    categoria: "cocina", dibujo: "cafetera", etiqueta: "Opción económica",
+    idealPara: "quien quiere buen café sin máquina ni cápsulas",
+    porQue: "Solo necesitas café de molienda gruesa y agua caliente: cuatro minutos de infusión, presionas y sirves. Prefiere vidrio de borosilicato o acero inoxidable con filtro de doble malla.",
+    pros: ["Sin electricidad, filtros de papel ni cápsulas", "Café con cuerpo y todo su aroma", "Fácil de lavar y de llevar"],
+    contras: ["Deja algo de sedimento en la taza", "La de vidrio pide cuidado"],
+    asin: "", enlace: "", busqueda: "prensa francesa 1 litro", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Báscula digital de cocina",
+    categoria: "cocina", dibujo: "bascula",
+    idealPara: "repostería y recetas que piden gramos",
+    porQue: "Pesar en gramos es mucho más preciso que medir en tazas, sobre todo en repostería. La función de tara te deja pesar ingredientes uno tras otro en el mismo recipiente.",
+    pros: ["Mide de gramo en gramo", "Función de tara", "Plana y fácil de guardar"],
+    contras: ["Revisa la capacidad máxima: 5 kg es lo común", "Funciona con pilas"],
+    asin: "", enlace: "", busqueda: "bascula digital cocina gramos", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Recipientes de vidrio con tapa hermética",
+    categoria: "cocina", dibujo: "recipiente",
+    idealPara: "guardar comida y llevar el almuerzo",
+    porQue: "El vidrio no guarda olores ni manchas y pasa del refrigerador al microondas. Las tapas con cuatro seguros y empaque de silicona evitan derrames en la mochila.",
+    pros: ["No absorben olores ni manchas de salsa", "Se apilan y ocupan poco", "Duran años"],
+    contras: ["Pesan más que los de plástico", "Quita la tapa antes de calentar"],
+    asin: "", enlace: "", busqueda: "recipientes de vidrio tapa hermetica", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Aspiradora robot con mapeo",
+    categoria: "hogar", dibujo: "robot", etiqueta: "Nuestra elección", destacado: true,
+    idealPara: "casas con pisos duros y mascotas",
+    porQue: "Limpia sola mientras no estás, y las que mapean la casa recorren cada cuarto en orden en vez de chocar al azar. Las de base con autovaciado pasan semanas sin que tengas que vaciarlas.",
+    pros: ["Limpieza diaria sin esfuerzo", "Se programa desde el celular", "Recoge pelo de mascotas"],
+    contras: ["Hay que despejar cables y medias del piso", "No reemplaza del todo una limpieza a fondo"],
+    asin: "", enlace: "", busqueda: "aspiradora robot mapeo", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Bombillos LED inteligentes Wi-Fi",
+    categoria: "hogar", dibujo: "bombillo", etiqueta: "Opción económica",
+    idealPara: "controlar la luz desde el celular o con la voz",
+    porQue: "Se enroscan en cualquier lámpara normal y se manejan desde una app: horarios, brillo y color. Los Wi-Fi funcionan con asistentes de voz sin necesitar un hub aparte.",
+    pros: ["Horarios para encender y apagar", "Brillo y tono ajustables", "Se instalan en segundos"],
+    contras: ["Muchos solo se conectan a Wi-Fi de 2,4 GHz", "Si apagas el interruptor de pared, pierden la conexión"],
+    asin: "", enlace: "", busqueda: "bombillo inteligente wifi", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Regleta con protección contra picos y USB",
+    categoria: "hogar", dibujo: "regleta", etiqueta: "Mejor calidad-precio",
+    idealPara: "conectar el computador y la TV y cargar celulares en un mismo sitio",
+    porQue: "Protege tus equipos de los picos de voltaje y suma puertos USB para cargar sin adaptadores. Revisa que diga protección contra sobretensiones y no solo «multitoma».",
+    pros: ["Protección contra picos", "Puertos USB incluidos", "Interruptor general"],
+    contras: ["No protege contra apagones: para eso se usa una UPS", "No la conectes en cadena a otra regleta"],
+    asin: "", enlace: "", busqueda: "regleta protector sobretension usb", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Ventilador de torre silencioso",
+    categoria: "hogar", dibujo: "ventilador",
+    idealPara: "cuartos y oficinas en ciudades calientes",
+    porQue: "Ocupa poco espacio en el piso y reparte el aire con oscilación. Busca modo nocturno, temporizador y control remoto para usarlo al dormir.",
+    pros: ["Ocupa poco espacio", "Temporizador y control remoto", "Modo nocturno silencioso"],
+    contras: ["Mueve menos aire que un ventilador de aspas grande", "Acumula polvo por dentro: límpialo seguido"],
+    asin: "", enlace: "", busqueda: "ventilador de torre silencioso", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Paños de microfibra (paquete grande)",
+    categoria: "hogar", dibujo: "panos",
+    idealPara: "limpiar sin químicos fuertes",
+    porQue: "Atrapan polvo y grasa con solo agua y no dejan pelusa en vidrios ni pantallas. Se lavan en la lavadora y aguantan muchísimos lavados.",
+    pros: ["Sirven para vidrios, pantallas y cocina", "Lavables y reutilizables", "Muy económicos"],
+    contras: ["No uses suavizante: pierden absorción", "Lávalos aparte para que no se llenen de pelusa"],
+    asin: "", enlace: "", busqueda: "paños de microfibra", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Lámpara LED de escritorio regulable",
+    categoria: "escritorio", dibujo: "lampara",
+    idealPara: "estudiar o trabajar de noche",
+    porQue: "Ajustar la intensidad y el tono de la luz según la hora hace más cómodas las sesiones largas. Busca un índice de reproducción de color (CRI) de 90 o más y un brazo articulado.",
+    pros: ["Intensidad y tono de luz ajustables", "Consume muy poca energía", "Pone la luz justo donde la necesitas"],
+    contras: ["Algunas económicas parpadean en cámara: busca «sin parpadeo»", "Mide el alcance del brazo para tu escritorio"],
+    asin: "", enlace: "", busqueda: "lampara led escritorio regulable", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Soporte ajustable para portátil",
+    categoria: "escritorio", dibujo: "portatil", etiqueta: "Mejor calidad-precio",
+    idealPara: "quien trabaja muchas horas en un portátil",
+    porQue: "Subir la pantalla a la altura de los ojos evita encorvarte. Con un teclado y un mouse externos tienes la postura de un escritorio completo.",
+    pros: ["Plegable y fácil de llevar", "Varias alturas", "El aluminio ayuda a disipar el calor"],
+    contras: ["Para escribir cómodo necesitas teclado y mouse aparte", "Revisa el peso máximo que soporta"],
+    asin: "", enlace: "", busqueda: "soporte laptop ajustable aluminio", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Silla ergonómica con soporte lumbar",
+    categoria: "escritorio", dibujo: "silla",
+    idealPara: "pasar muchas horas sentado",
+    porQue: "Con altura, apoyabrazos y soporte lumbar ajustables apoyas bien la espalda y los pies. El respaldo de malla es más fresco en climas cálidos.",
+    pros: ["Se ajusta a tu estatura", "Respaldo de malla fresco", "Ruedas y giro de 360°"],
+    contras: ["Hay que armarla", "Revisa el peso máximo y la altura del asiento"],
+    asin: "", enlace: "", busqueda: "silla ergonomica soporte lumbar malla", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Brazo articulado para monitor",
+    categoria: "escritorio", dibujo: "monitor",
+    idealPara: "liberar espacio y poner la pantalla a la altura correcta",
+    porQue: "Sube, baja y gira el monitor con la mano, y libera el espacio que ocupaba la base. Revisa que tu monitor tenga agujeros VESA y que su peso esté dentro del rango del brazo.",
+    pros: ["Libera espacio en el escritorio", "Ajuste de altura, giro e inclinación", "Ayuda a ordenar los cables"],
+    contras: ["Tu monitor debe tener montaje VESA", "Necesita un escritorio firme para la pinza"],
+    asin: "", enlace: "", busqueda: "brazo articulado monitor vesa", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Mochila de viaje de 40 litros para cabina",
+    categoria: "viajes", dibujo: "mochila", etiqueta: "Nuestra elección", destacado: true,
+    idealPara: "viajes de una semana sin maleta facturada",
+    porQue: "Con 40 litros cabe ropa para una semana y está pensada para las medidas del equipaje de mano. La apertura total, como una maleta, hace mucho más fácil empacar.",
+    pros: ["Se abre por completo, como una maleta", "Compartimento acolchado para el portátil", "Correas de hombro y de cintura"],
+    contras: ["Algunas aerolíneas de bajo costo cobran el equipaje de cabina", "Compara sus medidas con las de tu aerolínea"],
+    asin: "", enlace: "", busqueda: "mochila de viaje 40 litros cabina", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Cubos organizadores de equipaje",
+    categoria: "viajes", dibujo: "caja", etiqueta: "Opción económica",
+    idealPara: "mantener la maleta en orden todo el viaje",
+    porQue: "Separan la ropa por tipo, así encuentras todo sin desarmar la maleta. Los que tienen cremallera de compresión te ayudan a ganar espacio.",
+    pros: ["Ropa limpia y sucia por separado", "Ganas espacio al comprimir", "Sirven en cualquier maleta o mochila"],
+    contras: ["Suman algo de peso", "Las cremalleras de los más baratos fallan pronto"],
+    asin: "", enlace: "", busqueda: "cubos organizadores equipaje compresion", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Almohada de viaje viscoelástica",
+    categoria: "viajes", dibujo: "almohada",
+    idealPara: "vuelos y viajes largos en bus",
+    porQue: "La espuma viscoelástica sostiene el cuello para que la cabeza no se caiga al dormirte sentado. Las que se comprimen en su estuche ocupan poco en la mochila.",
+    pros: ["Sostiene bien el cuello", "Funda lavable", "Se comprime para guardarla"],
+    contras: ["Ocupa espacio si no se comprime", "Da calor en climas cálidos"],
+    asin: "", enlace: "", busqueda: "almohada de viaje viscoelastica", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Adaptador de enchufe universal con USB",
+    categoria: "viajes", dibujo: "cargador", etiqueta: "Opción económica",
+    idealPara: "viajar fuera de Colombia con un solo adaptador",
+    porQue: "Cambia entre las clavijas de EE. UU., Europa, Reino Unido y Australia, y trae puertos USB para cargar el celular sin el cargador original.",
+    pros: ["Sirve en la mayoría de países", "Puertos USB y USB-C", "Compacto"],
+    contras: ["Adapta la clavija, no convierte el voltaje", "Revisa que tus aparatos acepten de 110 a 240 V"],
+    asin: "", enlace: "", busqueda: "adaptador enchufe universal viaje usb c", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Set de bandas de resistencia",
+    categoria: "bienestar", dibujo: "bandas", etiqueta: "Mejor calidad-precio",
+    idealPara: "entrenar fuerza en casa o de viaje",
+    porQue: "Con varios niveles de resistencia, asas y un anclaje para puerta trabajas todo el cuerpo en la sala de tu casa. Guardadas, ocupan menos que un par de zapatos.",
+    pros: ["Varios niveles para ir progresando", "Caben en una mochila", "Sirven también para calentar y estirar"],
+    contras: ["Revísalas seguido: el látex se reseca con el sol", "Para cargas muy altas siguen ganando las pesas"],
+    asin: "", enlace: "", busqueda: "bandas de resistencia set con asas", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Botella térmica de acero de 1 litro",
+    categoria: "bienestar", dibujo: "botella",
+    idealPara: "tomar agua durante el día, en la oficina o el gimnasio",
+    porQue: "La doble pared al vacío mantiene el agua fría por horas y evita que la botella «sude» dentro de la mochila. Una tapa con pico te deja tomar sin desenroscar.",
+    pros: ["Mantiene la temperatura por horas", "No deja sabor como el plástico", "Un litro: menos recargas al día"],
+    contras: ["Si se abolla, puede perder el aislamiento", "Las tapas con pitillo piden limpieza frecuente"],
+    asin: "", enlace: "", busqueda: "botella termica acero 1 litro", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Báscula de baño digital con app",
+    categoria: "bienestar", dibujo: "bascula",
+    idealPara: "llevar el registro de tu peso con constancia",
+    porQue: "Guarda las mediciones en el celular, así ves la tendencia en vez de fijarte en un solo día. Las de vidrio templado son fáciles de limpiar.",
+    pros: ["Historial en el celular", "Vidrio fácil de limpiar", "Reconoce a varios usuarios"],
+    contras: ["Los datos de grasa corporal son solo aproximados", "Úsala siempre sobre un piso firme y plano"],
+    asin: "", enlace: "", busqueda: "bascula de baño digital bluetooth", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Colchoneta de yoga antideslizante",
+    categoria: "bienestar", dibujo: "esterilla", etiqueta: "Opción económica",
+    idealPara: "yoga, estiramientos y ejercicio en casa",
+    porQue: "Una colchoneta de 6 a 8 mm amortigua rodillas y codos sin perder estabilidad, y la superficie antideslizante evita resbalones en las posturas de apoyo.",
+    pros: ["Amortigua y no resbala", "Trae correa para llevarla", "Fácil de limpiar"],
+    contras: ["Las muy gruesas le restan equilibrio", "Puede tener olor los primeros días"],
+    asin: "", enlace: "", busqueda: "colchoneta yoga antideslizante 8mm", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Fuente de agua para mascotas",
+    categoria: "mascotas", dibujo: "plato",
+    idealPara: "gatos y perros que toman poca agua",
+    porQue: "Muchas mascotas, sobre todo los gatos, toman más cuando el agua se mueve y está filtrada. Con 2 litros o más no tienes que rellenarla a diario.",
+    pros: ["Agua filtrada y fresca", "Gran capacidad", "La mayoría tiene bomba silenciosa"],
+    contras: ["Hay que cambiar el filtro cada cierto tiempo", "Necesita un enchufe cerca"],
+    asin: "", enlace: "", busqueda: "fuente de agua para gatos y perros", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Cepillo deslanador para perros y gatos",
+    categoria: "mascotas", dibujo: "cepillo", etiqueta: "Opción económica",
+    idealPara: "mascotas que sueltan mucho pelo",
+    porQue: "Retira el pelo muerto antes de que termine en el sofá y en la ropa. Los que tienen botón para soltar el pelo se limpian en un segundo.",
+    pros: ["Menos pelo en la casa", "Se limpia con un botón", "Hay versiones para pelo corto y largo"],
+    contras: ["Úsalo con suavidad para no irritar la piel", "Elige el modelo según el tipo de pelo"],
+    asin: "", enlace: "", busqueda: "cepillo deslanador perros gatos", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Comedero automático programable",
+    categoria: "mascotas", dibujo: "comedero",
+    idealPara: "dar la comida a horario aunque no estés en casa",
+    porQue: "Sirve porciones a las horas que programes, lo que ayuda a mantener una rutina. Los que funcionan con corriente y pilas de respaldo no fallan en un apagón.",
+    pros: ["Porciones a horario", "Respaldo con pilas", "Tolva grande para varios días"],
+    contras: ["Solo funciona con concentrado seco", "Revisa que el tamaño del grano pase por el dosificador"],
+    asin: "", enlace: "", busqueda: "comedero automatico programable mascotas", imagen: "",
+    miOpinion: "", nota: 0
+  },
+  {
+    nombre: "Cama para perro con funda lavable",
+    categoria: "mascotas", dibujo: "cama",
+    idealPara: "perros que duermen en el piso",
+    porQue: "Una cama con bordes acolchados les da dónde apoyar la cabeza, y la funda removible se lava en la lavadora. Mide a tu perro dormido y súmale unos centímetros.",
+    pros: ["Funda removible y lavable", "Bordes para apoyar la cabeza", "Base antideslizante"],
+    contras: ["Algunos perros la muerden al principio", "En clima caliente prefieren superficies frescas"],
+    asin: "", enlace: "", busqueda: "cama para perro funda lavable", imagen: "",
+    miOpinion: "", nota: 0
+  }
+];
+</script>
+<style>
+/* VOICE everyday shopping guide: plain, confident, honest about trade-offs
+   IDEA a shop shelf with tags on its edge; every pick carries a verdict stamp, like a consumer-test magazine
+   PICTURE a full-width shelf of drawn objects, one per category, that is also the category picker
+   COLOUR cobalt wall, warm wood shelf, coral stamp ink on white; at night the wall goes deep and the lamp glows
+   TYPE Archivo 800 condensed for titles and stamps + Archivo for text
+   LAYOUT laptop: title left, search right, shelf full width, cards in 3 columns; phone: title, shelf in 2 rows, search, cards */
+:root{
+  color-scheme:light dark;
+  --bg:light-dark(#ffffff,#0e1120);
+  --ink:light-dark(#141622,#eceefa);
+  --muted:light-dark(#4a4f66,#a9afc9);
+  --line:light-dark(#e1e4f0,#283050);
+  --card:light-dark(#ffffff,#151a31);
+  --soft:light-dark(#f2f4ff,#141936);
+  --wall:light-dark(#2238d8,#17207a);
+  --wall-l:light-dark(#3049e6,#1d2890);
+  --cta:light-dark(#2238d8,#4256ff);
+  --cta-h:light-dark(#1a2bb0,#5568ff);
+  --stamp:light-dark(#d63a1f,#ff7a5c);
+  --wood:light-dark(#d9a766,#8a6340);
+  --wood-top:light-dark(#f1d3a2,#a97f52);
+  --sh:light-dark(rgba(6,12,80,.34),rgba(0,0,0,.42));
+  --band:light-dark(#ffc53d,#2b230c);
+  --band-ink:light-dark(#141622,#ffe3a0);
+  --foot:light-dark(#0f1650,#0a0d1c);
+  --coral:#ff5b3a;--coral-d:#d8432a;--coral-l:#ff8f75;
+  --sun:#ffc53d;--sun-d:#e09d17;--sun-l:#ffdf8a;
+  --obj-ink:#1a1c2b;--obj-ink-l:#3a3e58;
+  --white:#ffffff;--white-d:#cfd6f6;
+  --paper:#f4e8d0;--paper-d:#d9c49c;--paper-l:#fff6e4;
+  --steel:#aab2c4;--steel-d:#7d869b;--screen:#5f78ff;--screen-l:#9fb0ff;--lcd:#cde8c3;
+  --coffee:#5a3a22;--coffee-l:#c8935f;--pcb:#2a9150;--pcb-d:#1d6b3b;
+}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:16px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:clip}
+img{max-width:100%}
+a{color:inherit}
+.wrap{width:min(1240px,calc(100% - 2*max(5vw,16px)));margin-inline:auto}
+h1,h2,h3{font-weight:800;font-stretch:88%;letter-spacing:-.02em;line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,3.4vw,40px)}
+
+.disclose{background:var(--soft);border-bottom:1px solid var(--line);font-size:14px;padding:8px 0}
+.disclose p{margin-block:0}
+.nav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0 24px;padding-block:6px}
+.brand{display:flex;align-items:center;gap:10px;min-height:48px;font-weight:800;font-stretch:88%;font-size:23px;letter-spacing:-.02em;text-decoration:none}
+.brand svg{width:34px;height:34px;flex:none}
+.links{display:flex;flex-wrap:wrap;gap:0 20px}
+.links a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;text-decoration:none}
+.links a:hover{text-decoration:underline;text-underline-offset:5px}
+
+.hero{background:linear-gradient(160deg,var(--wall-l),var(--wall) 60%);color:#fff;display:flex;flex-direction:column}
+.top{display:contents}
+.intro{order:1;padding:clamp(28px,5vw,48px) max(5vw,16px) 18px}
+.intro h1{font-size:clamp(34px,4.6vw,52px)}
+.lede{margin:14px 0 0;font-size:17px;max-width:58ch;color:#e6e9ff}
+.shelf{order:2;position:relative;padding:6px 0 30px;background-image:radial-gradient(rgba(255,255,255,.09) 1.6px,transparent 1.8px);background-size:24px 24px;background-position:12px 6px}
+.shelf::before{content:"";box-sizing:border-box;position:absolute;left:0;right:0;bottom:30px;height:54px;background:var(--wood);border-top:8px solid var(--wood-top)}
+.shelf::after{content:"";position:absolute;left:0;right:0;bottom:16px;height:14px;background:linear-gradient(var(--sh),transparent)}
+.finder-wrap{order:3;padding:0 max(5vw,16px) 32px}
+.row{position:relative;z-index:1;display:grid;grid-template-columns:repeat(var(--cols,6),minmax(0,1fr));row-gap:24px}
+.item{appearance:none;background:none;border:0;margin:0;padding:16px 0 0;color:inherit;font:inherit;cursor:pointer;display:flex;flex-direction:column}
+.item svg{display:block;width:min(100%,136px);height:auto;aspect-ratio:1;margin:0 auto;overflow:visible;transition:transform .25s ease}
+@media (hover:hover){.item:hover svg{transform:translateY(-4px)}}
+.item[aria-pressed=true] svg{transform:translateY(-12px)}
+.item:focus-visible{outline:3px solid var(--sun);outline-offset:-3px;border-radius:8px}
+.plank{position:relative;display:flex;justify-content:center;align-items:flex-start;height:54px;padding:9px 4px 0;background:var(--wood);border-top:8px solid var(--wood-top)}
+.plank::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px;background:linear-gradient(var(--sh),transparent);pointer-events:none}
+.tag{display:inline-flex;align-items:baseline;gap:6px;background:#fffcf5;color:#141622;border-radius:4px;padding:4px 9px;font-size:14px;font-weight:600;line-height:1.3;white-space:nowrap;box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.tag b{color:#5a5f76;font-weight:800}
+.item[aria-pressed=true] .tag{background:#d63a1f;color:#fff}
+.item[aria-pressed=true] .tag b{color:#ffe0d8}
+
+.finder{background:var(--card);color:var(--ink);border-radius:16px;padding:18px;display:grid;gap:8px}
+.finder label{font-size:14px;font-weight:600;color:var(--muted)}
+.field{position:relative}
+.field svg{position:absolute;left:14px;top:50%;width:20px;height:20px;margin-top:-10px;color:var(--muted);pointer-events:none}
+.finder input,.finder select{width:100%;height:48px;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:0 14px}
+.finder input{padding-left:44px}
+.finder input:focus,.finder select:focus{outline:3px solid color-mix(in srgb,var(--cta) 30%,transparent);outline-offset:0;border-color:var(--cta)}
+.sort{display:flex;align-items:center;gap:12px;margin-top:6px}
+.sort label{flex:none}
+.sort select{flex:1}
+
+main{padding-block:28px 56px}
+.status{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin-bottom:16px}
+.status p{margin:0;font-weight:700;font-size:17px}
+.ghost{appearance:none;font:inherit;font-size:15px;font-weight:700;color:var(--cta);background:none;border:1.5px solid currentColor;border-radius:10px;min-height:44px;padding:0 16px;cursor:pointer}
+.ghost:hover{background:color-mix(in srgb,var(--cta) 8%,transparent)}
+.ghost:focus-visible{outline:3px solid color-mix(in srgb,var(--cta) 35%,transparent);outline-offset:2px}
+.demo{margin:0 0 20px;padding:12px 16px;border:1.5px dashed color-mix(in srgb,var(--stamp) 60%,transparent);border-radius:12px;font-size:14px;background:color-mix(in srgb,var(--stamp) 5%,transparent)}
+.demo code{font-size:13px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
+.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;border-radius:10px;margin-bottom:14px}
+.ctop{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.cat{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--muted)}
+.mini{display:block;width:40px;height:40px;flex:none;border-radius:10px;background:var(--wall);overflow:hidden}
+.stamp{display:inline-block;font-weight:800;font-stretch:75%;font-size:15px;line-height:1;color:var(--stamp);border:2px solid currentColor;border-radius:6px;padding:6px 8px 5px;transform:rotate(-3deg);white-space:nowrap}
+.card h3{font-size:22px;margin:14px 0 6px}
+.for{margin:0;font-size:15px;color:var(--muted)}
+.for b{color:var(--ink);font-weight:700}
+.why{margin:10px 0 0}
+.card h4{margin:14px 0 6px;font-size:14px;font-weight:700}
+.card ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.card li{position:relative;padding-left:24px;font-size:15px;line-height:1.45}
+.pros li::before{content:"";position:absolute;left:3px;top:.38em;width:11px;height:6px;border-left:2.5px solid var(--cta);border-bottom:2.5px solid var(--cta);transform:rotate(-45deg)}
+.cons li::before{content:"";position:absolute;left:3px;top:.68em;width:11px;height:2.5px;border-radius:2px;background:var(--stamp)}
+.sp{flex:1;min-height:20px}
+.buy{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:12px;background:var(--cta);color:#fff;font-weight:700;text-decoration:none}
+.buy:hover{background:var(--cta-h)}
+.buy:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.buy svg{width:18px;height:18px;flex:none}
+.buy.off{background:var(--soft);color:var(--muted)}
+.pic{position:relative;height:150px;margin:-20px -20px 14px;border-radius:15px 15px 0 0;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;background-color:var(--wall);background-image:radial-gradient(rgba(255,255,255,.09) 1.6px,transparent 1.8px);background-size:24px 24px;background-position:12px 6px}
+.pic::after{content:"";box-sizing:border-box;position:absolute;left:0;right:0;bottom:0;height:20px;background:var(--wood);border-top:7px solid var(--wood-top)}
+.pic svg{position:relative;z-index:1;display:block;width:116px;height:116px;margin-bottom:18px;overflow:visible}
+.pic.foto{background:#fff;align-items:center}
+.pic.foto::after{display:none}
+.pic img{display:block;width:100%;height:100%;object-fit:contain;padding:10px}
+.rev{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--soft)}
+.rev p{margin:0;font-size:15px}
+.rev .rev-t{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.masw{display:flex;justify-content:center;margin-top:24px}
+.masw .ghost{min-width:min(100%,320px)}
+.cta a:not(.mail){font-weight:700}
+.empty{grid-column:1/-1;border:1.5px dashed var(--line);border-radius:16px;padding:24px}
+.empty p{margin:0 0 14px}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+
+.method{background:var(--wall);color:#fff;padding-block:clamp(40px,6vw,72px)}
+.method .sub{margin:12px 0 0;font-size:17px;color:#e6e9ff;max-width:60ch}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:28px;margin-top:32px}
+.rule svg{display:block;width:44px;height:44px;margin-bottom:12px}
+.rule h3{font-size:21px;margin-bottom:8px}
+.rule p{margin:0;color:#e6e9ff}
+.faq{padding-block:clamp(40px,6vw,72px)}
+.qs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:28px 48px;margin-top:28px}
+.q h3{font-size:20px;font-stretch:95%;letter-spacing:-.01em;line-height:1.2;margin-bottom:6px}
+.q p{margin:0}
+.cta{background:var(--band);color:var(--band-ink);padding-block:clamp(36px,5vw,56px)}
+.cta-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px 40px}
+.cta h2{font-size:clamp(26px,3vw,36px)}
+.cta p{margin:10px 0 0;max-width:58ch}
+.mail{display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 6px;min-height:48px;padding:10px 20px;border-radius:12px;background:var(--band-ink);color:var(--band);font-weight:700;text-decoration:none;text-align:center}
+.mail span{white-space:nowrap}
+.mail:focus-visible{outline:3px solid var(--band-ink);outline-offset:3px}
+.foot{background:var(--foot);color:#d9ddf7;padding-block:40px;font-size:14px}
+.foot-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:20px 56px}
+.foot .brand{color:#fff;margin-bottom:6px}
+.foot p{margin:0 0 10px}
+.foot b{color:#fff}
+
+@media (min-width:861px){
+  .top{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(320px,1fr);gap:48px;align-items:end;padding:56px 0 30px}
+  .intro,.finder-wrap{padding:0}
+}
+@media (max-width:860px){.finder-wrap{padding-top:22px}}
+@media (max-width:760px){.foot-in{grid-template-columns:minmax(0,1fr)}}
+@media (min-width:1100px){.row.dos .item svg{width:min(100%,112px)}}
+@media (max-width:1099px){
+  .shelf{padding-bottom:22px}
+  .shelf::before,.shelf::after{display:none}
+  .row{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--wood) transparent}
+  .item{flex:0 0 auto;min-width:126px;scroll-snap-align:start}
+  .item svg{width:104px}
+  .plank{padding-inline:10px}
+}
+@media (max-width:700px){
+  .shelf{padding-bottom:0}
+  .shelf::before,.shelf::after{display:none}
+  .item{padding-top:12px;min-width:112px}
+  .item svg{width:92px}
+  .plank{height:48px;padding-top:7px}
+  .tag{font-size:13px;padding:3px 7px;gap:5px}
+}
+@media (prefers-reduced-motion:reduce){.item svg{transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="haz" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd98a" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#ffd98a" stop-opacity="0"/>
+    </linearGradient>
+    <symbol id="sello" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="19" fill="#ff5b3a"/>
+      <circle cx="20" cy="20" r="14.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-dasharray="2.2 2.6"/>
+      <path d="M13.5 20.5l4.6 4.6 8.4-9.2" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ob-bolsa" viewBox="0 0 120 120">
+      <polygon points="100,54 112,62 112,118 100,118" fill="var(--sh)"/>
+      <path d="M50 50C50 24 82 24 82 50" fill="none" stroke="var(--paper-d)" stroke-width="4" stroke-linecap="round"/>
+      <rect x="30" y="48" width="60" height="70" rx="2" fill="var(--paper)"/>
+      <polygon points="90,48 100,54 100,118 90,118" fill="var(--paper-d)"/>
+      <rect x="30" y="48" width="60" height="8" fill="var(--paper-d)" opacity=".5"/>
+      <rect x="30" y="48" width="3" height="70" fill="var(--paper-l)"/>
+      <path d="M42 54C42 26 74 26 74 54" fill="none" stroke="var(--obj-ink)" stroke-width="4" stroke-linecap="round"/>
+      <use href="#sello" x="44" y="72" width="32" height="32"/>
+    </symbol>
+    <symbol id="ob-audifonos" viewBox="0 0 120 120">
+      <path d="M42 97C42 45 94 45 94 97" fill="none" stroke="var(--sh)" stroke-width="9"/>
+      <rect x="86" y="88" width="20" height="30" rx="9" fill="var(--sh)"/>
+      <path d="M34 94C34 40 86 40 86 94" fill="none" stroke="var(--white)" stroke-width="9" stroke-linecap="round"/>
+      <path d="M59 56C71 56 83.5 69 83.5 94" fill="none" stroke="var(--white-d)" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="22" y="84" width="22" height="34" rx="10" fill="var(--coral)"/>
+      <rect x="76" y="84" width="22" height="34" rx="10" fill="var(--coral)"/>
+      <rect x="34" y="87" width="9" height="28" rx="4.5" fill="var(--coral-d)"/>
+      <rect x="88" y="87" width="9" height="28" rx="4.5" fill="var(--coral-d)"/>
+      <rect x="25" y="91" width="3" height="20" rx="1.5" fill="var(--coral-l)"/>
+      <rect x="79" y="91" width="3" height="20" rx="1.5" fill="var(--coral-l)"/>
+      <rect x="42" y="88" width="7" height="26" rx="3.5" fill="var(--obj-ink)"/>
+      <rect x="71" y="88" width="7" height="26" rx="3.5" fill="var(--obj-ink)"/>
+    </symbol>
+    <symbol id="ob-tetera" viewBox="0 0 120 120">
+      <polygon points="90,76 104,82 106,118 92,118" fill="var(--sh)"/>
+      <path d="M86 78C106 76 106 108 89 110" fill="none" stroke="var(--obj-ink)" stroke-width="6" stroke-linecap="round"/>
+      <polygon points="37,84 13,62 18,57 41,75" fill="var(--sun-d)"/>
+      <path d="M30 118L36 72Q60 58 84 72L90 118Z" fill="var(--sun)"/>
+      <path d="M70 66.2Q77 67.9 84 72L90 118L74 118Z" fill="var(--sun-d)"/>
+      <path d="M36.6 77L31.8 113" stroke="var(--sun-l)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M41 74Q60 64 79 74" fill="none" stroke="var(--obj-ink)" stroke-width="2.5"/>
+      <rect x="53" y="57" width="14" height="9" rx="4" fill="var(--obj-ink)"/>
+      <rect x="29" y="111" width="62" height="7" rx="2" fill="var(--obj-ink)"/>
+    </symbol>
+    <symbol id="ob-lampara" viewBox="0 0 120 120">
+      <polygon points="101,60 79,71 62,118 120,118 120,88" fill="url(#haz)"/>
+      <path d="M58 108L48 68L86 48" fill="none" stroke="var(--sh)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M50 108L40 64L78 44" fill="none" stroke="var(--obj-ink)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <polygon points="69,41 86,32 102,60 78,72" fill="var(--coral)"/>
+      <polygon points="86,32 102,60 93,64.5 80,35.2" fill="var(--coral-d)"/>
+      <circle cx="40" cy="64" r="6" fill="var(--coral)"/>
+      <circle cx="78" cy="44" r="4.5" fill="var(--obj-ink)"/>
+      <path d="M28 118L33 106H67L72 118Z" fill="var(--obj-ink)"/>
+      <rect x="33" y="106" width="34" height="2.5" fill="var(--obj-ink-l)"/>
+    </symbol>
+    <symbol id="ob-maleta" viewBox="0 0 120 120">
+      <polygon points="92,50 104,56 104,112 92,112" fill="var(--sh)"/>
+      <rect x="49" y="20" width="4" height="30" fill="var(--obj-ink-l)"/>
+      <rect x="67" y="20" width="4" height="30" fill="var(--obj-ink-l)"/>
+      <rect x="45" y="15" width="30" height="8" rx="4" fill="var(--obj-ink)"/>
+      <rect x="32" y="44" width="60" height="68" rx="9" fill="var(--white)"/>
+      <path d="M80 44H83A9 9 0 0 1 92 53V103A9 9 0 0 1 83 112H80Z" fill="var(--white-d)"/>
+      <rect x="45" y="52" width="3.5" height="52" rx="1.75" fill="var(--white-d)"/>
+      <rect x="58" y="52" width="3.5" height="52" rx="1.75" fill="var(--white-d)"/>
+      <rect x="71" y="52" width="3.5" height="52" rx="1.75" fill="var(--white-d)"/>
+      <path d="M37 45L35 56" stroke="var(--obj-ink)" stroke-width="1.5"/>
+      <rect x="29" y="55" width="11" height="15" rx="2" fill="var(--sun)" transform="rotate(-8 34.5 62.5)"/>
+      <circle cx="42" cy="114" r="4" fill="var(--obj-ink)"/>
+      <circle cx="82" cy="114" r="4" fill="var(--obj-ink)"/>
+    </symbol>
+    <symbol id="ob-pesa" viewBox="0 0 120 120">
+      <circle cx="69" cy="91" r="27" fill="var(--sh)"/>
+      <path d="M45 72C38 40 82 40 75 72" fill="none" stroke="var(--obj-ink)" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="60" cy="88" r="27" fill="var(--obj-ink)"/>
+      <path d="M60 61A27 27 0 0 0 60 115A21 27 0 0 1 60 61Z" fill="var(--obj-ink-l)"/>
+      <rect x="44" y="111" width="32" height="7" rx="2" fill="var(--obj-ink)"/>
+      <rect x="49" y="83" width="22" height="10" rx="3" fill="var(--coral)"/>
+    </symbol>
+    <symbol id="ob-mouse" viewBox="0 0 120 120">
+      <path d="M60 60C60 40 80 46 86 26" fill="none" stroke="var(--obj-ink)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M46 118V84A22 24 0 0 1 90 84V118Z" fill="var(--sh)"/>
+      <path d="M38 118V82A22 24 0 0 1 82 82V118Z" fill="var(--white)"/>
+      <path d="M70 60.6A22 24 0 0 1 82 82V118H72Z" fill="var(--white-d)"/>
+      <path d="M60 59V88" stroke="var(--white-d)" stroke-width="2"/>
+      <rect x="56.5" y="64" width="7" height="13" rx="3.5" fill="var(--coral)"/>
+      <rect x="38" y="109" width="44" height="9" fill="var(--obj-ink)"/>
+    </symbol>
+    <symbol id="ob-planta" viewBox="0 0 120 120">
+      <polygon points="84,88 96,94 92,118 80,118" fill="var(--sh)"/>
+      <ellipse cx="46" cy="62" rx="9" ry="24" transform="rotate(-28 46 62)" fill="#2a9150"/>
+      <ellipse cx="74" cy="62" rx="9" ry="24" transform="rotate(30 74 62)" fill="#2a9150"/>
+      <ellipse cx="60" cy="52" rx="10" ry="32" fill="#3fbf6a"/>
+      <path d="M60 26V84" stroke="#2a9150" stroke-width="2"/>
+      <path d="M38 92L42 118H78L82 92Z" fill="var(--coral)"/>
+      <path d="M70 92H82L78 118H68Z" fill="var(--coral-d)"/>
+      <rect x="34" y="84" width="52" height="10" rx="2" fill="var(--coral-d)"/>
+      <rect x="34" y="84" width="52" height="4" rx="2" fill="var(--coral-l)"/>
+    </symbol>
+    <symbol id="ob-plato" viewBox="0 0 120 120">
+      <polygon points="88,96 100,102 98,118 90,118" fill="var(--sh)"/>
+      <g transform="rotate(-12 60 80)" fill="var(--paper)">
+        <rect x="40" y="76" width="40" height="9" rx="4.5"/>
+        <circle cx="40" cy="75" r="7"/><circle cx="40" cy="86" r="7"/>
+        <circle cx="80" cy="75" r="7"/><circle cx="80" cy="86" r="7"/>
+      </g>
+      <path d="M26 96H94L86 118H34Z" fill="var(--sun)"/>
+      <path d="M76 96H94L86 118H72Z" fill="var(--sun-d)"/>
+      <rect x="24" y="92" width="72" height="8" rx="4" fill="var(--obj-ink)"/>
+    </symbol>
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#ffe7a3" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#ffe7a3" stop-opacity="0"/>
+    </radialGradient>
+    <symbol id="ob-control" viewBox="0 0 120 120">
+      <path d="M30 72C30 60 42 56 52 58H84C94 56 106 60 106 72C106 88 102 104 92 104C84 104 82 94 74 92H62C54 94 52 104 44 104C34 104 30 88 30 72Z" fill="var(--sh)"/>
+      <rect x="40" y="112" width="40" height="6" rx="2" fill="var(--white-d)"/>
+      <rect x="56" y="88" width="8" height="26" fill="var(--white-d)"/>
+      <path d="M22 64C22 52 34 48 44 50H76C86 48 98 52 98 64C98 80 94 96 84 96C76 96 74 86 66 84H54C46 86 44 96 36 96C26 96 22 80 22 64Z" fill="var(--obj-ink)"/>
+      <path d="M27 62C28 55 35 52 44 53" fill="none" stroke="var(--obj-ink-l)" stroke-width="3" stroke-linecap="round"/>
+      <rect x="32" y="61.5" width="15" height="5" rx="1.2" fill="var(--obj-ink-l)"/>
+      <rect x="37" y="56.5" width="5" height="15" rx="1.2" fill="var(--obj-ink-l)"/>
+      <circle cx="80" cy="57" r="3.6" fill="var(--coral)"/>
+      <circle cx="88" cy="64" r="3.6" fill="var(--sun)"/>
+      <circle cx="72" cy="64" r="3.6" fill="var(--white-d)"/>
+      <circle cx="80" cy="71" r="3.6" fill="var(--screen-l)"/>
+      <circle cx="51" cy="76" r="5.5" fill="var(--obj-ink-l)"/>
+      <circle cx="69" cy="76" r="5.5" fill="var(--obj-ink-l)"/>
+    </symbol>
+    <symbol id="ob-celular" viewBox="0 0 120 120">
+      <rect x="50" y="28" width="38" height="80" rx="7" fill="var(--sh)"/>
+      <rect x="42" y="22" width="38" height="82" rx="7" fill="var(--obj-ink)"/>
+      <rect x="45.5" y="28" width="31" height="70" rx="3" fill="var(--screen)"/>
+      <polygon points="45.5,28 76.5,28 76.5,44 45.5,70" fill="var(--screen-l)" opacity=".55"/>
+      <rect x="56" y="24.5" width="10" height="2.4" rx="1.2" fill="var(--obj-ink-l)"/>
+      <g fill="#fff" opacity=".85"><rect x="50" y="34" width="6" height="6" rx="1.6"/><rect x="58" y="34" width="6" height="6" rx="1.6"/><rect x="66" y="34" width="6" height="6" rx="1.6"/><rect x="50" y="42" width="6" height="6" rx="1.6"/><rect x="58" y="42" width="6" height="6" rx="1.6"/></g>
+      <path d="M34 118L40 100H82L88 118Z" fill="var(--coral)"/>
+      <path d="M74 100H82L88 118H78Z" fill="var(--coral-d)"/>
+      <rect x="40" y="100" width="42" height="3" fill="var(--coral-l)"/>
+    </symbol>
+    <symbol id="ob-impresora" viewBox="0 0 120 120">
+      <polygon points="96,24 106,30 106,118 96,118" fill="var(--sh)"/>
+      <circle cx="60" cy="13" r="9" fill="var(--white)"/>
+      <circle cx="60" cy="13" r="3.5" fill="var(--obj-ink)"/>
+      <path d="M64 20C70 30 66 40 62 50" fill="none" stroke="var(--white)" stroke-width="1.6"/>
+      <rect x="26" y="22" width="6" height="84" fill="var(--obj-ink)"/>
+      <rect x="88" y="22" width="6" height="84" fill="var(--obj-ink)"/>
+      <rect x="26" y="22" width="1.6" height="84" fill="var(--obj-ink-l)"/>
+      <rect x="24" y="20" width="72" height="6" rx="2" fill="var(--obj-ink)"/>
+      <rect x="28" y="54" width="64" height="5" fill="var(--obj-ink-l)"/>
+      <rect x="52" y="48" width="16" height="18" rx="2" fill="var(--coral)"/>
+      <rect x="62" y="48" width="6" height="18" rx="1" fill="var(--coral-d)"/>
+      <polygon points="57,66 63,66 60,71" fill="var(--sun)"/>
+      <rect x="50" y="84" width="20" height="12" rx="1" fill="var(--sun)"/>
+      <rect x="64" y="84" width="6" height="12" fill="var(--sun-d)"/>
+      <rect x="30" y="96" width="60" height="6" rx="1" fill="var(--white-d)"/>
+      <rect x="22" y="104" width="76" height="14" rx="3" fill="var(--obj-ink)"/>
+      <rect x="64" y="108" width="20" height="5" rx="1.5" fill="var(--screen)"/>
+    </symbol>
+    <symbol id="ob-multimetro" viewBox="0 0 120 120">
+      <rect x="42" y="28" width="52" height="90" rx="8" fill="var(--sh)"/>
+      <path d="M48 98C40 110 30 112 18 118" fill="none" stroke="var(--coral)" stroke-width="3" stroke-linecap="round"/>
+      <rect x="34" y="22" width="52" height="94" rx="8" fill="var(--sun)"/>
+      <path d="M76 22H78A8 8 0 0 1 86 30V108A8 8 0 0 1 78 116H76Z" fill="var(--sun-d)"/>
+      <rect x="35.5" y="30" width="2.5" height="78" rx="1.2" fill="var(--sun-l)"/>
+      <rect x="40" y="28" width="40" height="82" rx="5" fill="var(--obj-ink)"/>
+      <rect x="45" y="34" width="30" height="17" rx="2" fill="var(--lcd)"/>
+      <text x="60" y="47" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1c2b" font-family="monospace">12.6</text>
+      <circle cx="60" cy="72" r="12" fill="var(--obj-ink-l)"/>
+      <path d="M60 72L67 64" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="48" cy="98" r="3.5" fill="var(--coral)"/>
+      <circle cx="60" cy="98" r="3.5" fill="var(--obj-ink-l)"/>
+      <circle cx="72" cy="98" r="3.5" fill="var(--obj-ink-l)"/>
+      <path d="M72 98C80 108 92 110 104 116" fill="none" stroke="var(--obj-ink)" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ob-bateria" viewBox="0 0 120 120">
+      <rect x="52" y="46" width="34" height="72" rx="8" fill="var(--sh)"/>
+      <path d="M61 42C61 26 84 28 88 14" fill="none" stroke="var(--obj-ink)" stroke-width="3" stroke-linecap="round"/>
+      <rect x="44" y="40" width="34" height="78" rx="8" fill="var(--white)"/>
+      <path d="M70 40A8 8 0 0 1 78 48V110A8 8 0 0 1 70 118Z" fill="var(--white-d)"/>
+      <rect x="54" y="41.5" width="14" height="3" rx="1.5" fill="var(--obj-ink)"/>
+      <circle cx="53" cy="56" r="2" fill="var(--sun)"/><circle cx="59" cy="56" r="2" fill="var(--sun)"/><circle cx="65" cy="56" r="2" fill="var(--sun)"/><circle cx="71" cy="56" r="2" fill="var(--obj-ink-l)"/>
+      <rect x="50" y="80" width="20" height="3" rx="1.5" fill="var(--white-d)"/>
+    </symbol>
+    <symbol id="ob-cargador" viewBox="0 0 120 120">
+      <rect x="48" y="74" width="44" height="44" rx="8" fill="var(--sh)"/>
+      <rect x="48" y="56" width="5" height="16" rx="1.5" fill="var(--steel)"/>
+      <rect x="67" y="56" width="5" height="16" rx="1.5" fill="var(--steel)"/>
+      <rect x="38" y="70" width="44" height="48" rx="9" fill="var(--white)"/>
+      <path d="M73 70A9 9 0 0 1 82 79V109A9 9 0 0 1 73 118Z" fill="var(--white-d)"/>
+      <rect x="46" y="86" width="9" height="3.5" rx="1.75" fill="var(--obj-ink)"/>
+      <rect x="46" y="94" width="9" height="3.5" rx="1.75" fill="var(--obj-ink)"/>
+      <rect x="46" y="102" width="9" height="3.5" rx="1.75" fill="var(--obj-ink)"/>
+      <path d="M55 88C76 90 92 98 104 118" fill="none" stroke="var(--obj-ink)" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ob-router" viewBox="0 0 120 120">
+      <rect x="28" y="94" width="80" height="22" rx="6" fill="var(--sh)"/>
+      <rect x="28" y="38" width="5" height="54" rx="2.5" fill="var(--obj-ink)" transform="rotate(-14 30 92)"/>
+      <rect x="57.5" y="30" width="5" height="62" rx="2.5" fill="var(--obj-ink)"/>
+      <rect x="87" y="38" width="5" height="54" rx="2.5" fill="var(--obj-ink)" transform="rotate(14 90 92)"/>
+      <rect x="20" y="88" width="80" height="24" rx="6" fill="var(--obj-ink)"/>
+      <rect x="24" y="88" width="72" height="2.5" rx="1.2" fill="var(--obj-ink-l)"/>
+      <circle cx="34" cy="101" r="2.2" fill="var(--sun)"/><circle cx="42" cy="101" r="2.2" fill="var(--sun)"/><circle cx="50" cy="101" r="2.2" fill="var(--sun)"/><circle cx="58" cy="101" r="2.2" fill="var(--coral)"/>
+      <rect x="26" y="112" width="10" height="6" rx="1.5" fill="var(--obj-ink)"/>
+      <rect x="84" y="112" width="10" height="6" rx="1.5" fill="var(--obj-ink)"/>
+    </symbol>
+    <symbol id="ob-teclado" viewBox="0 0 120 120">
+      <polygon points="24,118 100,118 116,100 40,100" fill="var(--sh)"/>
+      <polygon points="12,108 30,90 108,90 90,108" fill="var(--white)"/>
+      <polygon points="12,108 90,108 90,118 12,118" fill="var(--white-d)"/>
+      <polygon points="90,108 108,90 108,100 90,118" fill="#9aa6d6"/>
+      <g stroke="var(--obj-ink-l)" stroke-width="3.2" stroke-dasharray="5 2.2"><path d="M22 104H92"/><path d="M27 99H97"/><path d="M32 94H102"/></g>
+      <path d="M42 104H70" stroke="var(--obj-ink)" stroke-width="3.2"/>
+    </symbol>
+    <symbol id="ob-monitor" viewBox="0 0 120 120">
+      <rect x="24" y="34" width="88" height="58" rx="4" fill="var(--sh)"/>
+      <path d="M42 118L48 110H72L78 118Z" fill="var(--obj-ink)"/>
+      <rect x="56" y="80" width="8" height="32" fill="var(--obj-ink-l)"/>
+      <rect x="14" y="26" width="92" height="60" rx="4" fill="var(--obj-ink)"/>
+      <rect x="18" y="30" width="84" height="52" rx="2" fill="var(--screen)"/>
+      <polygon points="18,30 62,30 30,82 18,82" fill="var(--screen-l)" opacity=".45"/>
+      <rect x="26" y="38" width="30" height="20" rx="2" fill="#fff" opacity=".85"/>
+      <rect x="62" y="38" width="32" height="8" rx="2" fill="var(--coral)"/>
+      <rect x="62" y="50" width="24" height="4" rx="2" fill="#fff" opacity=".7"/>
+      <rect x="26" y="64" width="44" height="4" rx="2" fill="#fff" opacity=".7"/>
+    </symbol>
+    <symbol id="ob-camara" viewBox="0 0 120 120">
+      <rect x="38" y="58" width="60" height="34" rx="17" fill="var(--sh)"/>
+      <path d="M60 84L44 118M60 84L76 118M60 84V118" stroke="var(--obj-ink)" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="30" y="52" width="60" height="34" rx="17" fill="var(--obj-ink)"/>
+      <path d="M36 62C38 57 42 55 47 55" fill="none" stroke="var(--obj-ink-l)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="60" cy="69" r="12" fill="var(--obj-ink-l)"/>
+      <circle cx="60" cy="69" r="7" fill="var(--screen)"/>
+      <circle cx="57" cy="66" r="2.2" fill="#fff"/>
+      <circle cx="80" cy="62" r="2" fill="var(--sun)"/>
+    </symbol>
+    <symbol id="ob-portatil" viewBox="0 0 120 120">
+      <polygon points="28,36 102,36 110,92 36,92" fill="var(--sh)"/>
+      <path d="M40 118L58 92H64L82 118" fill="none" stroke="var(--steel-d)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+      <rect x="20" y="28" width="80" height="52" rx="3" fill="var(--obj-ink)"/>
+      <rect x="24" y="32" width="72" height="44" rx="1" fill="var(--screen)"/>
+      <polygon points="24,32 62,32 34,76 24,76" fill="var(--screen-l)" opacity=".45"/>
+      <polygon points="14,80 106,80 112,90 8,90" fill="var(--steel)"/>
+      <rect x="8" y="90" width="104" height="3" fill="var(--steel-d)"/>
+    </symbol>
+    <symbol id="ob-freidora" viewBox="0 0 120 120">
+      <rect x="38" y="42" width="60" height="76" rx="14" fill="var(--sh)"/>
+      <rect x="30" y="36" width="60" height="82" rx="14" fill="var(--obj-ink)"/>
+      <path d="M34 52C34 43 38 39 45 38" fill="none" stroke="var(--obj-ink-l)" stroke-width="3" stroke-linecap="round"/>
+      <rect x="42" y="44" width="36" height="13" rx="3" fill="var(--obj-ink-l)"/>
+      <rect x="48" y="48" width="14" height="5" rx="1.5" fill="var(--sun)"/>
+      <circle cx="70" cy="50.5" r="3" fill="var(--coral)"/>
+      <path d="M33 70H87" stroke="var(--obj-ink-l)" stroke-width="2"/>
+      <rect x="46" y="80" width="28" height="9" rx="4.5" fill="var(--coral)"/>
+      <rect x="49" y="80" width="22" height="3" rx="1.5" fill="var(--coral-l)"/>
+    </symbol>
+    <symbol id="ob-licuadora" viewBox="0 0 120 120">
+      <path d="M46 34H94L88 118H52Z" fill="var(--sh)"/>
+      <path d="M84 44H94V82H82" fill="none" stroke="var(--obj-ink)" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M40 92L34 34H86L80 92Z" fill="rgba(255,255,255,.28)" stroke="#fff" stroke-width="2"/>
+      <path d="M41.5 92L37.6 56H82.4L78.5 92Z" fill="var(--coral)"/>
+      <path d="M39 38L42 78" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+      <rect x="31" y="28" width="58" height="8" rx="3" fill="var(--obj-ink)"/>
+      <path d="M36 118L40 92H80L84 118Z" fill="var(--obj-ink)"/>
+      <path d="M40 92H46L43 118H36Z" fill="var(--obj-ink-l)"/>
+      <circle cx="52" cy="106" r="3" fill="var(--sun)"/><circle cx="62" cy="106" r="3" fill="var(--coral)"/><circle cx="72" cy="106" r="3" fill="var(--white-d)"/>
+    </symbol>
+    <symbol id="ob-olla" viewBox="0 0 120 120">
+      <rect x="34" y="54" width="68" height="62" rx="14" fill="var(--sh)"/>
+      <rect x="26" y="50" width="68" height="64" rx="14" fill="var(--white)"/>
+      <path d="M80 50A14 14 0 0 1 94 64V100A14 14 0 0 1 80 114Z" fill="var(--white-d)"/>
+      <path d="M22 54C22 36 98 36 98 54Z" fill="var(--steel)"/>
+      <path d="M72 41C88 43 98 47 98 54H76Z" fill="var(--steel-d)"/>
+      <rect x="38" y="44" width="44" height="4" rx="2" fill="var(--obj-ink)"/>
+      <rect x="54" y="32" width="12" height="9" rx="3" fill="var(--obj-ink)"/>
+      <rect x="42" y="72" width="36" height="22" rx="4" fill="var(--obj-ink)"/>
+      <rect x="48" y="77" width="16" height="6" rx="1.5" fill="var(--sun)"/>
+      <circle cx="70" cy="80" r="3" fill="var(--coral)"/>
+      <rect x="32" y="112" width="12" height="6" rx="2" fill="var(--obj-ink)"/>
+      <rect x="76" y="112" width="12" height="6" rx="2" fill="var(--obj-ink)"/>
+    </symbol>
+    <symbol id="ob-cafetera" viewBox="0 0 120 120">
+      <rect x="48" y="44" width="36" height="74" rx="4" fill="var(--sh)"/>
+      <path d="M78 50H90V100H78" fill="none" stroke="var(--obj-ink)" stroke-width="5" stroke-linejoin="round"/>
+      <rect x="40" y="40" width="38" height="72" rx="3" fill="rgba(255,255,255,.3)"/>
+      <rect x="42" y="64" width="34" height="46" fill="var(--coffee)"/>
+      <rect x="42" y="60" width="34" height="5" fill="var(--coffee-l)"/>
+      <rect x="42" y="44" width="2.5" height="62" rx="1.2" fill="#fff" opacity=".75"/>
+      <rect x="38" y="108" width="42" height="10" rx="2" fill="var(--obj-ink)"/>
+      <rect x="38" y="36" width="42" height="7" rx="2" fill="var(--obj-ink)"/>
+      <path d="M38 37C40 29 78 29 80 37Z" fill="var(--obj-ink)"/>
+      <rect x="57" y="16" width="4" height="16" fill="var(--steel)"/>
+      <circle cx="59" cy="14" r="5.5" fill="var(--obj-ink)"/>
+      <path d="M39 39L31 35L36 45Z" fill="var(--obj-ink)"/>
+    </symbol>
+    <symbol id="ob-botella" viewBox="0 0 120 120">
+      <rect x="54" y="40" width="28" height="78" rx="10" fill="var(--sh)"/>
+      <path d="M54 26C54 15 66 15 66 26" fill="none" stroke="var(--obj-ink)" stroke-width="3"/>
+      <rect x="48" y="24" width="24" height="14" rx="4" fill="var(--obj-ink)"/>
+      <rect x="46" y="36" width="28" height="82" rx="10" fill="var(--coral)"/>
+      <path d="M64 36A10 10 0 0 1 74 46V108A10 10 0 0 1 64 118Z" fill="var(--coral-d)"/>
+      <rect x="48.5" y="46" width="3" height="60" rx="1.5" fill="var(--coral-l)"/>
+      <circle cx="60" cy="74" r="6" fill="#fff" opacity=".9"/>
+    </symbol>
+    <symbol id="ob-robot" viewBox="0 0 120 120">
+      <ellipse cx="68" cy="108" rx="46" ry="10" fill="var(--sh)"/>
+      <path d="M16 100V108A44 10 0 0 0 104 108V100Z" fill="var(--obj-ink)"/>
+      <ellipse cx="60" cy="100" rx="44" ry="10" fill="var(--white)"/>
+      <path d="M78 91A44 10 0 0 1 104 100A44 10 0 0 1 90 107.3Z" fill="var(--white-d)"/>
+      <rect x="60" y="90" width="20" height="5" fill="var(--obj-ink)"/>
+      <ellipse cx="70" cy="95" rx="10" ry="3.5" fill="var(--obj-ink)"/>
+      <ellipse cx="70" cy="90" rx="10" ry="3.5" fill="var(--obj-ink-l)"/>
+      <ellipse cx="42" cy="101" rx="6" ry="2" fill="var(--coral)"/>
+    </symbol>
+    <symbol id="ob-bombillo" viewBox="0 0 120 120">
+      <circle cx="60" cy="52" r="42" fill="url(#halo)"/>
+      <path d="M60 22C80 22 90 38 88 54C86 66 76 70 74 82H46C44 70 34 66 32 54C30 38 40 22 60 22Z" fill="var(--sun-l)"/>
+      <path d="M66 23C82 27 90 41 88 54C86 66 76 70 74 82H66C68 70 76 62 76 50C76 38 72 28 66 23Z" fill="var(--sun)"/>
+      <path d="M52 80C50 70 45 62 46 50" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+      <rect x="46" y="82" width="28" height="6" rx="1" fill="var(--steel)"/>
+      <rect x="47" y="88" width="26" height="6" rx="1" fill="var(--steel-d)"/>
+      <rect x="48" y="94" width="24" height="6" rx="1" fill="var(--steel)"/>
+      <rect x="40" y="100" width="40" height="18" rx="4" fill="var(--obj-ink)"/>
+      <rect x="42" y="100" width="36" height="3" rx="1.5" fill="var(--obj-ink-l)"/>
+    </symbol>
+    <symbol id="ob-carrete" viewBox="0 0 120 120">
+      <circle cx="68" cy="78" r="40" fill="var(--sh)"/>
+      <circle cx="60" cy="76" r="42" fill="var(--obj-ink)"/>
+      <path d="M24.9 55.75A40.5 40.5 0 0 1 60 35.5" fill="none" stroke="var(--obj-ink-l)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="60" cy="76" r="34" fill="var(--white)"/>
+      <circle cx="60" cy="76" r="28" fill="none" stroke="var(--white-d)" stroke-width="1.5"/>
+      <circle cx="60" cy="76" r="22" fill="none" stroke="var(--white-d)" stroke-width="1.5"/>
+      <circle cx="60" cy="76" r="15" fill="var(--obj-ink-l)"/>
+      <circle cx="60" cy="76" r="7" fill="var(--wall)"/>
+    </symbol>
+    <symbol id="ob-cautin" viewBox="0 0 120 120">
+      <rect x="22" y="86" width="56" height="32" rx="5" fill="var(--sh)"/>
+      <path d="M66 96C80 96 86 70 88 50" fill="none" stroke="var(--obj-ink)" stroke-width="2.5"/>
+      <rect x="14" y="80" width="56" height="38" rx="5" fill="var(--obj-ink)"/>
+      <rect x="16" y="80" width="52" height="3" rx="1.5" fill="var(--obj-ink-l)"/>
+      <rect x="21" y="88" width="30" height="13" rx="2" fill="var(--lcd)"/>
+      <text x="36" y="98.5" font-size="9" font-weight="700" text-anchor="middle" fill="#1a1c2b" font-family="monospace">350°</text>
+      <circle cx="60" cy="98" r="6" fill="var(--obj-ink-l)"/>
+      <rect x="78" y="110" width="32" height="8" rx="2" fill="var(--obj-ink)"/>
+      <path d="M86 110L92 86M102 110L96 86" stroke="var(--steel-d)" stroke-width="2.5"/>
+      <rect x="88" y="34" width="10" height="34" rx="5" fill="var(--coral)"/>
+      <rect x="89" y="36" width="2.5" height="30" rx="1.2" fill="var(--coral-l)"/>
+      <rect x="91" y="68" width="4" height="16" fill="var(--steel)"/>
+      <polygon points="91,84 95,84 93,92" fill="var(--steel-d)"/>
+    </symbol>
+    <symbol id="ob-taladro" viewBox="0 0 120 120">
+      <rect x="38" y="40" width="56" height="24" rx="10" fill="var(--sh)"/>
+      <path d="M42 56H56L60 98H44Z" fill="var(--coral-d)"/>
+      <rect x="26" y="34" width="60" height="26" rx="11" fill="var(--coral)"/>
+      <rect x="32" y="36" width="44" height="3" rx="1.5" fill="var(--coral-l)"/>
+      <rect x="86" y="38" width="12" height="18" rx="3" fill="var(--obj-ink)"/>
+      <rect x="98" y="45" width="16" height="4" fill="var(--steel)"/>
+      <rect x="56" y="58" width="5" height="10" rx="2" fill="var(--obj-ink)"/>
+      <rect x="34" y="96" width="38" height="22" rx="4" fill="var(--obj-ink)"/>
+      <rect x="36" y="96" width="34" height="3" rx="1.5" fill="var(--obj-ink-l)"/>
+      <rect x="40" y="104" width="12" height="3" rx="1.5" fill="var(--sun)"/>
+    </symbol>
+    <symbol id="ob-mochila" viewBox="0 0 120 120">
+      <rect x="38" y="40" width="60" height="78" rx="18" fill="var(--sh)"/>
+      <path d="M50 38C50 26 70 26 70 38" fill="none" stroke="var(--obj-ink)" stroke-width="4" stroke-linecap="round"/>
+      <rect x="30" y="34" width="60" height="84" rx="18" fill="var(--sun)"/>
+      <path d="M72 34A18 18 0 0 1 90 52V100A18 18 0 0 1 72 118Z" fill="var(--sun-d)"/>
+      <rect x="33" y="50" width="3" height="50" rx="1.5" fill="var(--sun-l)"/>
+      <rect x="40" y="76" width="40" height="34" rx="9" fill="var(--sun-d)"/>
+      <path d="M44 84H76" stroke="var(--obj-ink)" stroke-width="2" stroke-linecap="round"/>
+      <rect x="56" y="81" width="8" height="6" rx="1.5" fill="var(--obj-ink)"/>
+    </symbol>
+    <symbol id="ob-silla" viewBox="0 0 120 120">
+      <rect x="46" y="20" width="44" height="58" rx="14" fill="var(--sh)"/>
+      <rect x="38" y="14" width="44" height="58" rx="14" fill="var(--obj-ink)"/>
+      <rect x="43" y="19" width="34" height="48" rx="10" fill="none" stroke="var(--obj-ink-l)" stroke-width="2"/>
+      <path d="M45 30H75M44 40H76M44 50H76M45 60H75" stroke="var(--obj-ink-l)" stroke-width="1"/>
+      <path d="M30 62V76H40M90 62V76H80" fill="none" stroke="var(--obj-ink-l)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="30" y="74" width="60" height="12" rx="6" fill="var(--obj-ink-l)"/>
+      <rect x="57" y="86" width="6" height="18" fill="var(--steel)"/>
+      <path d="M22 110L60 102L98 110" fill="none" stroke="var(--obj-ink)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="22" cy="114" r="4" fill="var(--obj-ink)"/><circle cx="98" cy="114" r="4" fill="var(--obj-ink)"/><circle cx="60" cy="114" r="4" fill="var(--obj-ink)"/>
+    </symbol>
+    <symbol id="ob-vela" viewBox="0 0 120 120">
+      <circle cx="38" cy="86" r="24" fill="url(#halo)"/>
+      <circle cx="78" cy="76" r="30" fill="url(#halo)"/>
+      <rect x="24" y="96" width="28" height="22" fill="var(--white)"/>
+      <rect x="46" y="96" width="6" height="22" fill="var(--white-d)"/>
+      <ellipse cx="38" cy="96" rx="14" ry="4.5" fill="var(--white-d)"/>
+      <path d="M38 80C42 86 42 92 38 93C34 92 34 86 38 80Z" fill="var(--sun)"/>
+      <rect x="62" y="88" width="32" height="30" fill="var(--white)"/>
+      <rect x="86" y="88" width="8" height="30" fill="var(--white-d)"/>
+      <ellipse cx="78" cy="88" rx="16" ry="5" fill="var(--white-d)"/>
+      <path d="M78 68C83 76 83 83 78 84.5C73 83 73 76 78 68Z" fill="var(--sun)"/>
+      <path d="M78 75C80 79 80 82 78 83C76 82 76 79 78 75Z" fill="#fff"/>
+    </symbol>
+    <symbol id="ob-placa" viewBox="0 0 120 120">
+      <polygon points="22,118 98,118 116,100 40,100" fill="var(--sh)"/>
+      <polygon points="10,112 30,92 108,92 88,112" fill="var(--pcb)"/>
+      <polygon points="10,112 88,112 88,118 10,118" fill="var(--pcb-d)"/>
+      <polygon points="88,112 108,92 108,98 88,118" fill="#174f2c"/>
+      <path d="M36 96H102" stroke="var(--obj-ink)" stroke-width="3" stroke-dasharray="2.5 1.5"/>
+      <polygon points="44,108 50,102 70,102 64,108" fill="var(--obj-ink)"/>
+      <polygon points="12,110 20,102 30,102 22,110" fill="var(--steel)"/>
+      <circle cx="82" cy="104" r="2" fill="var(--coral)"/>
+      <path d="M28 108H42M70 104L84 99" stroke="#9fe0b4" stroke-width="1" opacity=".8"/>
+    </symbol>
+    <symbol id="ob-lamina" viewBox="0 0 120 120">
+      <polygon points="40,30 104,30 112,118 48,118" fill="var(--sh)"/>
+      <polygon points="30,26 94,26 100,118 36,118" fill="var(--sun-d)"/>
+      <polygon points="32,28 92,28 97.6,116 37.8,116" fill="var(--sun)"/>
+      <g stroke="var(--sun-d)" stroke-width="1.2" opacity=".55"><path d="M34 46H93M35 64H94M36 82H95M37 100H96"/></g>
+      <rect x="30" y="26" width="64" height="4" fill="var(--sun-l)"/>
+    </symbol>
+    <symbol id="ob-kit" viewBox="0 0 120 120">
+      <rect x="28" y="70" width="84" height="48" rx="5" fill="var(--sh)"/>
+      <path d="M46 66V56H74V66" fill="none" stroke="var(--obj-ink)" stroke-width="5" stroke-linejoin="round"/>
+      <rect x="18" y="64" width="84" height="54" rx="5" fill="var(--coral)"/>
+      <rect x="18" y="64" width="84" height="14" rx="5" fill="var(--coral-d)"/>
+      <rect x="21" y="66" width="78" height="2.5" rx="1.2" fill="var(--coral-l)"/>
+      <rect x="54" y="74" width="12" height="8" rx="2" fill="var(--steel)"/>
+      <rect x="22" y="82" width="2.5" height="32" rx="1.2" fill="var(--coral-l)"/>
+    </symbol>
+    <symbol id="ob-destornillador" viewBox="0 0 120 120">
+      <rect x="26" y="96" width="76" height="22" rx="4" fill="var(--sh)"/>
+      <rect x="18" y="92" width="76" height="26" rx="4" fill="var(--obj-ink)"/>
+      <rect x="20" y="92" width="72" height="3" rx="1.5" fill="var(--obj-ink-l)"/>
+      <g fill="var(--steel)"><rect x="26" y="99" width="4" height="13" rx="1"/><rect x="34" y="99" width="4" height="13" rx="1"/><rect x="42" y="99" width="4" height="13" rx="1"/><rect x="50" y="99" width="4" height="13" rx="1"/><rect x="58" y="99" width="4" height="13" rx="1"/><rect x="66" y="99" width="4" height="13" rx="1"/></g>
+      <g transform="rotate(14 84 92)"><rect x="78" y="24" width="12" height="42" rx="5" fill="var(--coral)"/><rect x="79.5" y="27" width="3" height="36" rx="1.5" fill="var(--coral-l)"/><rect x="82" y="66" width="4" height="26" fill="var(--steel)"/></g>
+    </symbol>
+    <symbol id="ob-recipiente" viewBox="0 0 120 120">
+      <rect x="26" y="70" width="84" height="48" rx="6" fill="var(--sh)"/>
+      <rect x="18" y="72" width="84" height="46" rx="6" fill="rgba(255,255,255,.35)" stroke="#fff" stroke-width="2"/>
+      <rect x="22" y="92" width="76" height="22" rx="3" fill="var(--sun)"/>
+      <circle cx="36" cy="96" r="5" fill="var(--coral)"/><circle cx="52" cy="98" r="4" fill="#3fbf6a"/><circle cx="74" cy="96" r="5" fill="var(--coral)"/><circle cx="88" cy="99" r="4" fill="#3fbf6a"/>
+      <rect x="14" y="62" width="92" height="12" rx="4" fill="var(--screen)"/>
+      <rect x="16" y="62" width="88" height="3" rx="1.5" fill="var(--screen-l)"/>
+      <rect x="10" y="66" width="8" height="10" rx="2" fill="var(--screen)"/><rect x="102" y="66" width="8" height="10" rx="2" fill="var(--screen)"/>
+    </symbol>
+    <symbol id="ob-panos" viewBox="0 0 120 120">
+      <rect x="28" y="72" width="80" height="46" rx="6" fill="var(--sh)"/>
+      <rect x="20" y="102" width="80" height="16" rx="6" fill="var(--screen)"/>
+      <rect x="20" y="86" width="80" height="17" rx="6" fill="var(--sun)"/>
+      <rect x="20" y="70" width="80" height="17" rx="6" fill="var(--coral)"/>
+      <rect x="24" y="72" width="72" height="3" rx="1.5" fill="var(--coral-l)"/>
+      <rect x="84" y="70" width="16" height="48" rx="6" fill="rgba(0,0,0,.14)"/>
+    </symbol>
+    <symbol id="ob-regleta" viewBox="0 0 120 120">
+      <polygon points="26,118 104,118 114,106 36,106" fill="var(--sh)"/>
+      <path d="M12 112C4 112 2 102 8 94C14 86 10 74 4 70" fill="none" stroke="var(--white-d)" stroke-width="3"/>
+      <polygon points="10,110 24,96 112,96 98,110" fill="var(--white)"/>
+      <polygon points="10,110 98,110 98,118 10,118" fill="var(--white-d)"/>
+      <polygon points="98,110 112,96 112,104 98,118" fill="#9aa6d6"/>
+      <g fill="var(--obj-ink)"><ellipse cx="36" cy="103" rx="6" ry="3"/><ellipse cx="54" cy="103" rx="6" ry="3"/><ellipse cx="72" cy="103" rx="6" ry="3"/></g>
+      <rect x="84" y="100" width="8" height="2.5" rx="1" fill="var(--obj-ink)"/><rect x="83" y="104.5" width="8" height="2.5" rx="1" fill="var(--obj-ink)"/>
+      <circle cx="23" cy="104" r="2" fill="var(--coral)"/>
+    </symbol>
+    <symbol id="ob-ventilador" viewBox="0 0 120 120">
+      <rect x="52" y="14" width="28" height="98" rx="14" fill="var(--sh)"/>
+      <ellipse cx="58" cy="112" rx="20" ry="6" fill="var(--obj-ink)"/>
+      <rect x="44" y="10" width="28" height="100" rx="14" fill="var(--white)"/>
+      <rect x="64" y="16" width="8" height="88" rx="4" fill="var(--white-d)"/>
+      <g stroke="var(--white-d)" stroke-width="2"><path d="M50 32H64M50 40H64M50 48H64M50 56H64M50 64H64M50 72H64M50 80H64M50 88H64"/></g>
+      <circle cx="58" cy="21" r="2.5" fill="var(--coral)"/>
+    </symbol>
+    <symbol id="ob-almohada" viewBox="0 0 120 120">
+      <path d="M38 118C22 118 20 64 38 50C52 40 84 40 98 50C116 64 114 118 98 118C88 118 90 96 82 86C76 80 60 80 54 86C46 96 48 118 38 118Z" fill="var(--sh)"/>
+      <path d="M30 118C14 118 12 64 30 50C44 40 76 40 90 50C108 64 106 118 90 118C80 118 82 96 74 86C68 80 52 80 46 86C38 96 40 118 30 118Z" fill="var(--screen-l)"/>
+      <path d="M30 54C42 44 70 43 86 49" fill="none" stroke="#fff" stroke-width="3" opacity=".6" stroke-linecap="round"/>
+      <path d="M97 62C104 78 102 110 91 117" fill="none" stroke="var(--screen)" stroke-width="6" opacity=".5"/>
+    </symbol>
+    <symbol id="ob-bandas" viewBox="0 0 120 120">
+      <ellipse cx="68" cy="104" rx="42" ry="12" fill="var(--sh)"/>
+      <ellipse cx="60" cy="102" rx="40" ry="11" fill="none" stroke="var(--coral)" stroke-width="7"/>
+      <ellipse cx="58" cy="92" rx="34" ry="9.5" fill="none" stroke="var(--sun)" stroke-width="7"/>
+      <ellipse cx="62" cy="82" rx="28" ry="8.5" fill="none" stroke="var(--screen)" stroke-width="7"/>
+      <ellipse cx="60" cy="73" rx="22" ry="7" fill="none" stroke="var(--obj-ink)" stroke-width="7"/>
+    </symbol>
+    <symbol id="ob-bascula" viewBox="0 0 120 120">
+      <polygon points="30,118 100,118 114,104 44,104" fill="var(--sh)"/>
+      <polygon points="16,110 34,94 104,94 86,110" fill="var(--white)"/>
+      <polygon points="16,110 86,110 86,118 16,118" fill="var(--white-d)"/>
+      <polygon points="86,110 104,94 104,102 86,118" fill="#9aa6d6"/>
+      <polygon points="44,106 49,101.5 69,101.5 64,106" fill="var(--obj-ink)"/>
+      <path d="M51 104H61" stroke="var(--sun)" stroke-width="2"/>
+    </symbol>
+    <symbol id="ob-esterilla" viewBox="0 0 120 120">
+      <rect x="24" y="92" width="88" height="26" rx="13" fill="var(--sh)"/>
+      <rect x="16" y="88" width="84" height="30" rx="15" fill="var(--screen)"/>
+      <rect x="24" y="90" width="68" height="4" rx="2" fill="var(--screen-l)"/>
+      <path d="M40 88V118M70 88V118" stroke="var(--obj-ink)" stroke-width="3"/>
+      <circle cx="98" cy="103" r="15" fill="var(--screen-l)"/>
+      <path d="M98 103m-3 0a3 3 0 1 1 6 0a7 7 0 1 1 -14 0a11 11 0 1 1 22 0" fill="none" stroke="var(--screen)" stroke-width="2"/>
+    </symbol>
+    <symbol id="ob-cepillo" viewBox="0 0 120 120">
+      <rect x="28" y="92" width="76" height="22" rx="6" fill="var(--sh)"/>
+      <path d="M58 88L68 38" stroke="var(--obj-ink)" stroke-width="10" stroke-linecap="round"/>
+      <path d="M56.5 84L65 42" stroke="var(--obj-ink-l)" stroke-width="2.5" stroke-linecap="round"/>
+      <rect x="20" y="86" width="76" height="24" rx="6" fill="var(--coral)"/>
+      <rect x="23" y="86" width="70" height="3" rx="1.5" fill="var(--coral-l)"/>
+      <path d="M24 110V118M30 110V118M36 110V118M42 110V118M48 110V118M54 110V118M60 110V118M66 110V118M72 110V118M78 110V118M84 110V118M90 110V118" stroke="var(--steel-d)" stroke-width="2"/>
+    </symbol>
+    <symbol id="ob-comedero" viewBox="0 0 120 120">
+      <rect x="44" y="28" width="52" height="90" rx="10" fill="var(--sh)"/>
+      <rect x="36" y="24" width="52" height="94" rx="10" fill="var(--white)"/>
+      <path d="M78 24A10 10 0 0 1 88 34V108A10 10 0 0 1 78 118Z" fill="var(--white-d)"/>
+      <rect x="42" y="32" width="38" height="38" rx="6" fill="var(--sun-l)"/>
+      <g fill="var(--sun-d)"><circle cx="49" cy="60" r="3"/><circle cx="57" cy="62" r="3"/><circle cx="65" cy="59" r="3"/><circle cx="73" cy="62" r="3"/><circle cx="53" cy="54" r="3"/><circle cx="69" cy="54" r="3"/></g>
+      <rect x="48" y="76" width="26" height="8" rx="2" fill="var(--obj-ink)"/>
+      <path d="M22 104H68L64 118H26Z" fill="var(--coral)"/>
+      <rect x="20" y="100" width="50" height="6" rx="3" fill="var(--coral-d)"/>
+    </symbol>
+    <symbol id="ob-cama" viewBox="0 0 120 120">
+      <ellipse cx="66" cy="104" rx="50" ry="15" fill="var(--sh)"/>
+      <path d="M8 100C8 82 112 82 112 100C112 110 100 118 60 118C20 118 8 110 8 100Z" fill="var(--coral)"/>
+      <ellipse cx="60" cy="97" rx="40" ry="9" fill="var(--paper)"/>
+      <path d="M12 96C16 88 40 84 60 84" fill="none" stroke="var(--coral-l)" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ob-tripode" viewBox="0 0 120 120">
+      <circle cx="66" cy="40" r="28" fill="none" stroke="var(--sh)" stroke-width="8"/>
+      <path d="M60 64L38 118M60 64L82 118M60 64V118" stroke="var(--obj-ink)" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="57" y="56" width="6" height="12" fill="var(--obj-ink)"/>
+      <circle cx="60" cy="36" r="28" fill="none" stroke="var(--white)" stroke-width="8"/>
+      <path d="M36 22A28 28 0 0 1 60 8" fill="none" stroke="#fff" stroke-width="3" opacity=".6"/>
+      <rect x="51" y="20" width="18" height="34" rx="4" fill="var(--obj-ink)"/>
+      <rect x="53" y="23" width="14" height="28" rx="2" fill="var(--screen)"/>
+    </symbol>
+    <symbol id="ob-caja" viewBox="0 0 120 120">
+      <polygon points="98,56 110,62 110,118 98,118" fill="var(--sh)"/>
+      <polygon points="28,64 40,56 98,56 86,64" fill="var(--paper-l)"/>
+      <rect x="28" y="64" width="58" height="54" fill="var(--paper)"/>
+      <polygon points="86,64 98,56 98,112 86,118" fill="var(--paper-d)"/>
+      <polygon points="52,64 62,64 74,56 64,56" fill="var(--sun-l)"/>
+      <rect x="52" y="64" width="10" height="20" fill="var(--sun)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="disclose"><p class="wrap">Esta página contiene enlaces de afiliado: si compras a través de ellos, recibimos una comisión sin costo extra para ti.</p></div>
+
+<nav class="nav wrap" aria-label="Principal">
+  <a class="brand" href="#inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#sello" width="40" height="40"/></svg><span data-sitio>Bien Elegido</span></a>
+  <div class="links"><a href="#productos">Productos</a><a href="#como-elegimos">Cómo elegimos</a><a href="#preguntas">Preguntas</a><a href="#impresion-3d">Impresión 3D</a><a href="https://convertidor-de-fotos-a-stl-gratis.github.io/">Litofanías</a></div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="top wrap">
+    <div class="intro">
+      <h1>Productos que vale la pena comprar en Amazon</h1>
+      <p class="lede">Una lista corta por categoría: para quién es cada producto, lo bueno y lo que conviene saber antes de comprar. <span id="revision">Lista revisada en noviembre de 2026.</span></p>
+    </div>
+    <div class="finder-wrap">
+      <form class="finder" id="buscador" role="search">
+        <label for="q">Buscar en la lista</label>
+        <div class="field">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <input id="q" type="search" placeholder="Audífonos, café, mochila…" autocomplete="off" enterkeyhint="search">
+        </div>
+        <div class="sort">
+          <label for="orden">Ordenar</label>
+          <select id="orden"><option value="rec">Recomendados</option><option value="az">Nombre, de la A a la Z</option></select>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="shelf"><div class="row" id="estante" role="group" aria-label="Categorías"></div></div>
+</header>
+
+<main id="productos">
+  <div class="wrap">
+    <div class="status">
+      <p id="estado" aria-live="polite">Cargando productos…</p>
+      <button type="button" class="ghost" id="limpiar" hidden>Ver todo</button>
+    </div>
+    <p class="demo" id="demo" hidden>Vista de ejemplo: productos de muestra y enlaces sin ID de afiliado. Para publicar la tuya, edita <code>CONFIG</code> y <code>PRODUCTOS</code> al inicio del archivo.</p>
+    <div class="grid" id="grid"></div>
+    <div class="masw"><button type="button" class="ghost" id="mas" hidden>Ver más productos</button></div>
+    <noscript><p>Activa JavaScript para ver la lista de productos.</p></noscript>
+  </div>
+</main>
+
+<section class="method" id="como-elegimos">
+  <div class="wrap">
+    <h2>Cómo elegimos</h2>
+    <p class="sub">Cuatro reglas que cumple cada recomendación de esta página.</p>
+    <div class="rules">
+      <div class="rule">
+        <svg viewBox="0 0 44 44" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="14" r="7"/><path d="M8 38c2-9 7.5-13 14-13s12 4 14 13"/></g></svg>
+        <h3>Para quién es</h3>
+        <p>Cada producto dice en qué situación rinde. Si no es para ti, lo sabes antes de hacer clic.</p>
+      </div>
+      <div class="rule">
+        <svg viewBox="0 0 44 44" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7v31M12 38h20M7 13h30"/><path d="M7 13 2 25h10zM37 13l-5 12h10z"/></g></svg>
+        <h3>Lo bueno y lo malo</h3>
+        <p>Toda recomendación trae un «ten en cuenta». Ningún producto es perfecto y es mejor saberlo antes de pagar.</p>
+      </div>
+      <div class="rule">
+        <svg viewBox="0 0 44 44" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 23 21 7h16v16L21 39z"/><circle cx="30" cy="14" r="2.5"/></g></svg>
+        <h3>Precios siempre al día</h3>
+        <p>Los precios cambian a diario, así que no los copiamos: el botón te lleva al precio vigente en Amazon.</p>
+      </div>
+      <div class="rule">
+        <svg viewBox="0 0 44 44" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l3 3 6-6M19 12h20M5 24l3 3 6-6M19 24h20M5 36h6M19 36h14"/></g></svg>
+        <h3>Una lista corta</h3>
+        <p>Pocas opciones por categoría para que decidas rápido. Si algo deja de valer la pena, sale de la lista.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="preguntas">
+  <div class="wrap">
+    <h2>Preguntas frecuentes</h2>
+    <div class="qs">
+      <div class="q"><h3>¿Me cuesta algo comprar con estos enlaces?</h3><p>No. Pagas lo mismo que si entraras directo a Amazon. Si compras, Amazon nos paga una comisión por la venta y eso mantiene este sitio.</p></div>
+      <div class="q"><h3>¿Por qué no muestran precios ni estrellas?</h3><p>Porque cambian todo el tiempo. Para no mostrarte datos viejos, el botón te lleva a la página del producto, donde ves el precio, las opiniones y la disponibilidad actuales.</p></div>
+      <div class="q"><h3>¿Hacen envíos a mi país?</h3><p>Depende del producto y del vendedor. Antes de pagar, Amazon te muestra si envía a tu dirección, cuánto cuesta el envío y los impuestos de importación.</p></div>
+      <div class="q"><h3>¿Y si llega dañado o no me sirve?</h3><p>La compra es con Amazon: las devoluciones y garantías se gestionan desde tu cuenta de Amazon, según la política del vendedor.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="impresion-3d">
+  <div class="wrap cta-in">
+    <div>
+      <h2>Impresiones 3D con domicilio en Colombia</h2>
+      <p>Repuestos, soportes, figuras, regalos y prototipos hechos a pedido. Cuéntanos qué necesitas, con un archivo STL, una foto o solo la idea, y te enviamos la cotización con el envío a tu ciudad. ¿Quieres una litofanía? <a href="https://convertidor-de-fotos-a-stl-gratis.github.io/">Créala gratis con nuestro generador</a>.</p>
+    </div>
+    <a class="mail" id="correo" href="mailto:camilocmontoya@gmail.com">Cotizar por correo: <span id="correo-txt">camilocmontoya@gmail.com</span></a>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand" href="#inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#sello" width="40" height="40"/></svg><span data-sitio>Bien Elegido</span></a>
+      <p>Recomendaciones de compra por categoría e impresiones 3D a pedido con domicilio en Colombia.</p>
+    </div>
+    <div>
+      <p><b>Divulgación de afiliados.</b> En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.</p>
+      <p>Amazon y el logotipo de Amazon son marcas comerciales de Amazon.com, Inc. o de sus afiliadas.</p>
+      <p><b>Privacidad.</b> Esta página no usa cookies propias ni guarda datos de quien la visita. Las fuentes tipográficas se cargan desde Google Fonts. Si haces clic en un enlace a Amazon, Amazon usa cookies para registrar la compra según su propia política.</p>
+      <p>© <span id="anio">2026</span> <span data-sitio>Bien Elegido</span></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+{
+  const $ = s => document.querySelector(s);
+  const C = Object.assign({ nombreSitio: "Bien Elegido", tagAfiliado: "", tiendaAmazon: "www.amazon.com", ultimaRevision: "", correo: "", abrirEnNuevaPestana: true }, window.CONFIG || {});
+  const CATS = Array.isArray(window.CATEGORIAS) ? window.CATEGORIAS.filter(c => c && c.id) : [];
+  const ok = Array.isArray(window.PRODUCTOS);
+  const DATA = ok ? window.PRODUCTOS.filter(p => p && p.nombre) : [];
+  const DIBUJOS = ["audifonos", "mouse", "tetera", "planta", "lampara", "maleta", "pesa", "plato", "caja", "bolsa", "control", "celular", "impresora", "multimetro", "bateria", "cargador", "router", "teclado", "monitor", "camara", "portatil", "freidora", "licuadora", "olla", "cafetera", "botella", "robot", "bombillo", "carrete", "cautin", "taladro", "mochila", "silla", "vela", "placa", "lamina", "kit", "destornillador", "recipiente", "panos", "regleta", "ventilador", "almohada", "bandas", "bascula", "esterilla", "cepillo", "comedero", "cama", "tripode"];
+  const FLECHA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const tag = String(C.tagAfiliado || "").trim();
+  const tienda = String(C.tiendaAmazon || "").trim().replace(/^https?:\/\//i, "").replace(/\/.*$/, "") || "www.amazon.com";
+  let enMarco = true;
+  try { enMarco = window.self !== window.top; } catch (e) {}
+  const nueva = !!C.abrirEnNuevaPestana && !enMarco;
+  const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const PASO = 12;
+  const st = { cat: "todo", q: "", orden: "rec", limite: PASO };
+
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const norm = s => String(s ?? "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  const dib = d => DIBUJOS.includes(d) ? d : "caja";
+  const catDe = id => CATS.find(c => c.id === id) || { id: id, nombre: "Otros", dibujo: "caja" };
+  const valida = id => id === "todo" || CATS.some(c => c.id === id);
+  const plural = (n, uno, varios) => n + " " + (n === 1 ? uno : varios);
+  const dibujo = (d, cls) => `<svg${cls ? ` class="${cls}"` : ""} viewBox="0 0 120 120" aria-hidden="true"><use href="#ob-${dib(d)}" width="120" height="120"/></svg>`;
+  const lista = a => (Array.isArray(a) ? a : []).map(x => `<li>${esc(x)}</li>`).join("");
+
+  function enlace(p) {
+    const e = String(p.enlace || "").trim();
+    const asin = String(p.asin || "").trim();
+    let url = "";
+    if (e) {
+      try {
+        const u = new URL(/^https?:\/\//i.test(e) ? e : "https://" + e);
+        if (tag && /(^|\.)amazon\./i.test(u.hostname) && !u.searchParams.has("tag")) u.searchParams.set("tag", tag);
+        url = u.href;
+      } catch (err) { url = ""; }
+    } else if (asin) {
+      url = "https://" + tienda + "/dp/" + encodeURIComponent(asin) + (tag ? "?tag=" + encodeURIComponent(tag) : "");
+    } else {
+      url = "https://" + tienda + "/s?k=" + encodeURIComponent(p.busqueda || p.nombre) + (tag ? "&tag=" + encodeURIComponent(tag) : "");
+    }
+    return /^https?:\/\//i.test(url) ? url : "";
+  }
+
+  function estante() {
+    const n = {};
+    DATA.forEach(p => { n[p.categoria] = (n[p.categoria] || 0) + 1; });
+    const items = [{ id: "todo", nombre: "Todo", dibujo: "bolsa", n: DATA.length }]
+      .concat(CATS.map(c => ({ id: c.id, nombre: c.nombre, dibujo: c.dibujo, n: n[c.id] || 0 })));
+    const row = $("#estante");
+    row.style.setProperty("--cols", items.length > 8 ? Math.ceil(items.length / 2) : items.length);
+    row.classList.toggle("dos", items.length > 8);
+    row.innerHTML = items.map(c => `<button type="button" class="item" data-cat="${esc(c.id)}" aria-pressed="false" aria-label="${esc(c.nombre)}, ${plural(c.n, "producto", "productos")}">${dibujo(c.dibujo)}<span class="plank"><span class="tag">${esc(c.nombre)} <b>${c.n}</b></span></span></button>`).join("");
+  }
+
+  function marcar() {
+    document.querySelectorAll(".item").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.cat === st.cat)));
+  }
+
+  function filtrados() {
+    const palabras = norm(st.q).split(/\s+/).filter(Boolean);
+    let r = DATA.map((p, i) => ({ p, i })).filter(({ p }) => st.cat === "todo" || p.categoria === st.cat);
+    if (palabras.length) {
+      r = r.filter(({ p }) => {
+        const texto = norm([p.nombre, p.idealPara, p.porQue, p.etiqueta, p.miOpinion, catDe(p.categoria).nombre].concat(p.pros || [], p.contras || []).join(" "));
+        return palabras.every(w => texto.includes(w));
+      });
+    }
+    r.sort(st.orden === "az"
+      ? (a, b) => String(a.p.nombre).localeCompare(String(b.p.nombre), "es")
+      : (a, b) => (b.p.destacado ? 1 : 0) - (a.p.destacado ? 1 : 0) || a.i - b.i);
+    return r;
+  }
+
+  function tarjeta({ p }) {
+    const c = catDe(p.categoria);
+    const d = dib(p.dibujo || c.dibujo);
+    const url = enlace(p);
+    const pros = lista(p.pros);
+    const contras = lista(p.contras);
+    const nota = Number(p.nota);
+    const pic = p.imagen
+      ? `<div class="pic foto" data-dibujo="${d}"><img src="${esc(p.imagen)}" alt="${esc(p.nombre)}" loading="lazy"></div>`
+      : `<div class="pic">${dibujo(d)}</div>`;
+    const resena = p.miOpinion
+      ? `<div class="rev"><p class="rev-t">Mi reseña${nota >= 1 && nota <= 10 ? ` · ${esc(nota.toLocaleString("es-CO"))}/10` : ""}</p><p>${esc(p.miOpinion)}</p></div>`
+      : "";
+    const boton = url
+      ? `<a class="buy" href="${esc(url)}"${nueva ? ' target="_blank"' : ""} rel="sponsored nofollow noopener" aria-label="Ver precio y opiniones de ${esc(p.nombre)} en Amazon">Ver precio y opiniones en Amazon ${FLECHA}</a>`
+      : `<span class="buy off">Enlace pendiente</span>`;
+    return `<article class="card">
+      ${pic}
+      <div class="ctop"><span class="cat">${esc(c.nombre)}</span>${p.etiqueta ? `<span class="stamp">${esc(p.etiqueta)}</span>` : ""}</div>
+      <h3>${esc(p.nombre)}</h3>
+      ${p.idealPara ? `<p class="for"><b>Ideal para:</b> ${esc(p.idealPara)}</p>` : ""}
+      ${p.porQue ? `<p class="why">${esc(p.porQue)}</p>` : ""}
+      ${pros ? `<h4>Lo bueno</h4><ul class="pros">${pros}</ul>` : ""}
+      ${contras ? `<h4>Ten en cuenta</h4><ul class="cons">${contras}</ul>` : ""}
+      ${resena}
+      <div class="sp"></div>
+      ${boton}
+    </article>`;
+  }
+
+  function pintar() {
+    const grid = $("#grid");
+    const mas = $("#mas");
+    if (!ok) {
+      $("#estado").textContent = "No se pudo leer la lista de productos";
+      grid.innerHTML = `<div class="empty"><p><b>Revisa la lista PRODUCTOS al inicio del archivo.</b> Cada producto va entre llaves { } y separado del siguiente por una coma.</p></div>`;
+      mas.hidden = true;
+      return;
+    }
+    const r = filtrados();
+    const q = st.q.trim();
+    const donde = st.cat === "todo" ? "todas las categorías" : catDe(st.cat).nombre;
+    $("#estado").textContent = q
+      ? `${plural(r.length, "resultado", "resultados")} para «${q}» en ${donde}`
+      : `${plural(r.length, "producto", "productos")} en ${donde}`;
+    $("#limpiar").hidden = st.cat === "todo" && !q;
+    if (r.length) {
+      grid.innerHTML = r.slice(0, st.limite).map(tarjeta).join("");
+      grid.querySelectorAll(".pic.foto img").forEach(im => im.addEventListener("error", () => {
+        const caja = im.parentElement;
+        caja.classList.remove("foto");
+        caja.innerHTML = dibujo(caja.dataset.dibujo);
+      }, { once: true }));
+      const resto = r.length - st.limite;
+      mas.hidden = resto <= 0;
+      if (resto > 0) mas.textContent = `Ver más productos (${resto} más)`;
+      return;
+    }
+    mas.hidden = true;
+    const otra = st.cat !== "todo" && q;
+    grid.innerHTML = `<div class="empty"><p><b>${q ? `No hay productos que coincidan con «${esc(q)}» en ${esc(donde)}.` : `Todavía no hay productos en ${esc(donde)}.`}</b> ${otra ? "Prueba a buscar en todas las categorías." : q ? "Prueba con otra palabra." : ""}</p><div class="acts">${otra ? '<button type="button" class="ghost" data-act="todas">Buscar en todas</button>' : ""}<button type="button" class="ghost" data-act="limpiar">Ver todo</button></div></div>`;
+  }
+
+  function elegir(id, mover) {
+    if (!valida(id)) return;
+    st.cat = id;
+    st.limite = PASO;
+    marcar();
+    pintar();
+    if (location.hash.slice(1) !== id) { try { location.hash = id; } catch (e) {} }
+    if (mover && innerWidth <= 860) {
+      const destino = $("#productos");
+      if (destino.getBoundingClientRect().top > innerHeight * 0.6) destino.scrollIntoView({ behavior: quieto ? "auto" : "smooth", block: "start" });
+    }
+  }
+
+  $("#estante").addEventListener("click", e => {
+    const b = e.target.closest(".item");
+    if (b) elegir(b.dataset.cat, true);
+  });
+  $("#estante").addEventListener("keydown", e => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const bs = Array.from(document.querySelectorAll(".item"));
+    const i = bs.indexOf(document.activeElement);
+    if (i < 0) return;
+    e.preventDefault();
+    bs[(i + (e.key === "ArrowRight" ? 1 : bs.length - 1)) % bs.length].focus();
+  });
+  $("#q").addEventListener("input", e => { st.q = e.target.value; st.limite = PASO; pintar(); });
+  $("#mas").addEventListener("click", () => { st.limite += PASO; pintar(); });
+  $("#orden").addEventListener("change", e => { st.orden = e.target.value; st.limite = PASO; pintar(); });
+  $("#buscador").addEventListener("submit", e => {
+    e.preventDefault();
+    $("#q").blur();
+    $("#productos").scrollIntoView({ behavior: quieto ? "auto" : "smooth", block: "start" });
+  });
+  $("#limpiar").addEventListener("click", () => { st.q = ""; $("#q").value = ""; elegir("todo", false); });
+  $("#grid").addEventListener("click", e => {
+    const b = e.target.closest("[data-act]");
+    if (!b) return;
+    if (b.dataset.act === "limpiar") { st.q = ""; $("#q").value = ""; }
+    elegir("todo", false);
+  });
+  window.addEventListener("hashchange", () => {
+    let h = "";
+    try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+    if (valida(h) && h !== st.cat) { st.cat = h; marcar(); pintar(); }
+  });
+
+  document.querySelectorAll("[data-sitio]").forEach(el => { el.textContent = C.nombreSitio; });
+  if (C.nombreSitio) document.title = C.nombreSitio;
+  const rev = $("#revision");
+  if (C.ultimaRevision) rev.textContent = "Lista revisada en " + C.ultimaRevision + "."; else rev.remove();
+  const correo = String(C.correo || "").trim();
+  if (correo) { $("#correo").href = "mailto:" + correo + (C.asuntoCorreo ? "?subject=" + encodeURIComponent(C.asuntoCorreo) : ""); $("#correo-txt").textContent = correo; } else { $(".cta").remove(); }
+  $("#anio").textContent = new Date().getFullYear();
+  $("#demo").hidden = !!tag;
+
+  let inicial = "";
+  try { inicial = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+  if (valida(inicial)) st.cat = inicial;
+  estante();
+  marcar();
+  pintar();
+}
+</script>
+</body>
+</html>
